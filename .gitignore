@@ -105,3 +105,4 @@ dist
 
 # users settings files
 .husky/
+.vscode/

@@ -1,0 +1,36 @@
+#root {
+  font-size: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  position: relative;
+  flex-grow: 1;
+}
+
+header{
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: $header-color;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 90%;
+
+  @media only screen and (min-width: 601px) {
+    width: 85%
+  }
+
+  @media only screen and (min-width: 993px) {
+    width: 70%
+  }
+}
+

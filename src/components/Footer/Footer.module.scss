@@ -1,0 +1,38 @@
+@import '../../styles/variables.scss';
+
+.footer {
+  background-color: $header-color;
+
+  &__wrapper {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  &__logo {
+    height: auto;
+    width: 80px;
+    opacity: 0.5;
+    transition: 0.3s all;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__github {
+    text-decoration: inherit;
+    opacity: 0.5;
+    transition: 0.3s all;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:before {
+      content: '©';
+    }
+  }
+}
