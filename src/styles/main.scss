@@ -1,6 +1,10 @@
-#root {
+* {
   font-size: 16px;
   box-sizing: border-box;
+  font-family: 'Rubik', sans-serif;
+}
+
+#root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -17,7 +21,7 @@ header{
   gap: 0.5rem;
   justify-content: center;
   align-items: center;
-  background-color: $header-color;
+  background-color: $main-color;
 }
 
 .container {
