@@ -14,11 +14,18 @@ class MainPage extends React.Component {
     this.setState({ cards: database.results });
   }
 
+  searchForDatabase = (str: string) => {
+    const findCards = database.results.filter((card) =>
+      card.name.toLowerCase().includes(str.toLowerCase())
+    );
+    this.setState({ cards: findCards });
+  };
+
   render() {
     return (
       <div className={GLOBAL_STYLES.CONTAINER}>
-        <h1>Main page</h1>
-        <Search />
+        <h1>Rick and Morty</h1>
+        <Search search={this.searchForDatabase} />
         <Cards cards={this.state.cards} />
       </div>
     );

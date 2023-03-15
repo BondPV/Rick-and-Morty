@@ -1,7 +1,8 @@
 @import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 
 .card {
-  border: 1px solid gray;
+  @include box-shadow;
 
   &__title {
     margin: 0.5rem 0;

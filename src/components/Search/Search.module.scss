@@ -1,0 +1,36 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.search {
+  display: flex;
+  width: 100%;
+  @include box-shadow;
+  border: 2px solid $main-color;
+
+  &__input {
+    width: 100%;
+    border-right: none;
+    padding: 0.5rem;
+    border: transparent;
+    outline: none;
+    font-size: 1.2rem;
+  }
+
+  &__btn {
+    background-color: $main-color;
+    border: none;
+    display: inline-block;
+    height: auto;
+    line-height: 2.2rem;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+    transition: .3s ease-out all;
+    cursor: pointer;
+  
+    &:hover {
+      color: white;
+    }
+  }
+}
+
