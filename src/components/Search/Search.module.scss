@@ -18,19 +18,7 @@
 
   &__btn {
     background-color: $main-color;
-    border: none;
-    display: inline-block;
-    height: auto;
-    line-height: 2.2rem;
-    padding: 0 2rem;
-    text-transform: uppercase;
-    vertical-align: middle;
-    transition: .3s ease-out all;
-    cursor: pointer;
-  
-    &:hover {
-      color: white;
-    }
+    @include button;
   }
 }
 
