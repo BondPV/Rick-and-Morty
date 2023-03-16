@@ -1,20 +1,39 @@
+import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { TITLE } from '../../constants/Constants';
 import styles from './Navigation.module.scss';
 
-const setActive = ({ isActive }: { isActive: boolean }) =>
-  isActive ? `${styles.nav__link} ${styles.nav__link_active}` : `${styles.nav__link}`;
+class Navigation extends React.Component<
+  { currentTitle: (str: string) => void },
+  { title?: string }
+> {
+  setActive = ({ isActive }: { isActive: boolean }) =>
+    isActive ? `${styles.nav__link} ${styles.nav__link_active}` : `${styles.nav__link}`;
 
-const Navigation = () => {
-  return (
-    <nav className={styles.nav}>
-      <NavLink to="/" className={setActive}>
-        Main
-      </NavLink>
-      <NavLink to="/about" className={setActive}>
-        About us
-      </NavLink>
-    </nav>
-  );
-};
+  render() {
+    return (
+      <nav className={styles.nav}>
+        <NavLink
+          to="/"
+          className={this.setActive}
+          onClick={() => {
+            this.props.currentTitle(TITLE.MAIN);
+          }}
+        >
+          Main
+        </NavLink>
+        <NavLink
+          to="/about"
+          className={this.setActive}
+          onClick={() => {
+            this.props.currentTitle(TITLE.ABOUT);
+          }}
+        >
+          About us
+        </NavLink>
+      </nav>
+    );
+  }
+}
 
 export { Navigation };

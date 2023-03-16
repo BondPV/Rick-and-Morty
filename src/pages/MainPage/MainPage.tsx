@@ -4,6 +4,7 @@ import { Cards } from '../../components/Cards/Cards';
 import { ICard } from '../../types/interfaces';
 import { GLOBAL_STYLES } from '../../constants/Constants';
 import database from '../../database/source.json';
+import { getStorage, StorageKey } from '../../utils/localStorage';
 
 class MainPage extends React.Component {
   state: { cards: ICard[] } = {
@@ -11,7 +12,7 @@ class MainPage extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({ cards: database.results });
+    this.searchForDatabase(getStorage(StorageKey.search) || '');
   }
 
   searchForDatabase = (str: string) => {
@@ -25,7 +26,7 @@ class MainPage extends React.Component {
     return (
       <div className={GLOBAL_STYLES.CONTAINER}>
         <h1>Rick and Morty</h1>
-        <Search search={this.searchForDatabase} />
+        <Search searchCards={this.searchForDatabase} />
         <Cards cards={this.state.cards} />
       </div>
     );

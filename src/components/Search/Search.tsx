@@ -2,12 +2,13 @@ import React from 'react';
 import { getStorage, setStorage, StorageKey } from '../../utils/localStorage';
 import styles from './Search.module.scss';
 
-class Search extends React.Component<{ search: (str: string) => void }, { search?: string }> {
+class Search extends React.Component<{ searchCards: (str: string) => void }, { search?: string }> {
   state = {
     search: getStorage(StorageKey.search) || '',
   };
 
   componentDidMount() {
+    this.props.searchCards(this.state.search);
     setStorage(StorageKey.search, this.state.search);
   }
 
@@ -22,7 +23,7 @@ class Search extends React.Component<{ search: (str: string) => void }, { search
 
   handleKey = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.key === 'Enter') {
-      this.props.search(this.state.search);
+      this.props.searchCards(this.state.search);
       setStorage(StorageKey.search, this.state.search);
     }
   };
@@ -38,7 +39,10 @@ class Search extends React.Component<{ search: (str: string) => void }, { search
           onChange={this.searchInputChange}
           onKeyDown={this.handleKey}
         />
-        <button className={styles.search__btn} onClick={() => this.props.search(this.state.search)}>
+        <button
+          className={styles.search__btn}
+          onClick={() => this.props.searchCards(this.state.search)}
+        >
           Search
         </button>
       </div>

@@ -2,4 +2,9 @@ const GLOBAL_STYLES = {
   CONTAINER: 'container',
 };
 
-export { GLOBAL_STYLES };
+const TITLE = {
+  MAIN: 'Main page',
+  ABOUT: 'About us page',
+};
+
+export { GLOBAL_STYLES, TITLE };
