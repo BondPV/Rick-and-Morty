@@ -13,7 +13,7 @@ class Search extends React.Component<{ search: (str: string) => void }, { search
 
   componentDidUpdate() {
     setStorage(StorageKey.search, this.state.search);
-  
+  }
 
   searchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ search: event.target.value });
