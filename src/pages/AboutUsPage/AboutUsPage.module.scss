@@ -1,0 +1,15 @@
+@import '../../styles/variables.scss';
+
+.about {
+  margin: 0 auto;
+  margin-top: 2rem;
+
+  p {
+    font-size: 1.2rem;
+  }
+
+  span {
+    font-size: 1.5rem;
+    color: $main-color;
+  }
+}

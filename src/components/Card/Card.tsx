@@ -1,9 +1,7 @@
 import { ICard } from '../../types/interfaces';
 import styles from './Card.module.scss';
 
-function Card(props: ICard) {
-  const { id, name, gender, image, species, episode } = props;
-
+const Card = ({ id, name, gender, image, species, episode }: ICard) => {
   return (
     <div id={`${id}`} className={styles.card}>
       <div className={styles['card__img-wrap']}>
@@ -26,6 +24,6 @@ function Card(props: ICard) {
       </div>
     </div>
   );
-}
+};
 
 export { Card };

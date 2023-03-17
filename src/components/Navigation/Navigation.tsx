@@ -3,10 +3,15 @@ import { NavLink } from 'react-router-dom';
 import { TITLE } from '../../constants/Constants';
 import styles from './Navigation.module.scss';
 
-class Navigation extends React.Component<
-  { currentTitle: (str: string) => void },
-  { title?: string }
-> {
+interface IPropsNav {
+  currentTitle: (str: string) => void;
+}
+
+interface IStateNav {
+  title?: string;
+}
+
+class Navigation extends React.Component<IPropsNav, IStateNav> {
   setActive = ({ isActive }: { isActive: boolean }) =>
     isActive ? `${styles.nav__link} ${styles.nav__link_active}` : `${styles.nav__link}`;
 
@@ -29,7 +34,7 @@ class Navigation extends React.Component<
             this.props.currentTitle(TITLE.ABOUT);
           }}
         >
-          About us
+          About
         </NavLink>
       </nav>
     );

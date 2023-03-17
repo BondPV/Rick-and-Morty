@@ -3,8 +3,8 @@ const GLOBAL_STYLES = {
 };
 
 const TITLE = {
-  MAIN: 'Main page',
-  ABOUT: 'About us page',
+  MAIN: 'Rick and Morty',
+  ABOUT: 'About us',
 };
 
 export { GLOBAL_STYLES, TITLE };

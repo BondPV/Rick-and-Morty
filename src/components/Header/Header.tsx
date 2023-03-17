@@ -3,13 +3,13 @@ import { GLOBAL_STYLES, TITLE } from '../../constants/Constants';
 import { Navigation } from '../Navigation/Navigation';
 import React from 'react';
 
-class Header extends React.Component<{ [key: string]: never }, { title?: string }> {
+class Header extends React.Component<{}, { title?: string }> {
   state = {
     title: TITLE.MAIN,
   };
 
   updateTitle = (title: string) => {
-    this.setState({ title: title });
+    this.setState({ title });
   };
 
   render() {
@@ -17,7 +17,7 @@ class Header extends React.Component<{ [key: string]: never }, { title?: string 
       <header className={styles.header}>
         <div className={GLOBAL_STYLES.CONTAINER}>
           <div className={styles.header__wrapper}>
-            <div className={styles.header__title}>{this.state.title}</div>
+            <h1 className={styles.header__title}>{this.state.title}</h1>
             <Navigation currentTitle={this.updateTitle} />
           </div>
         </div>
