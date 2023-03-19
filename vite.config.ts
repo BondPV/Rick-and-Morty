@@ -15,8 +15,6 @@ export default defineConfig({
       provider: 'c8',
       reporter: ['text'],
       all: true,
-      include: ['src'],
-      exclude: ['src/types'],
     },
   },
 });
