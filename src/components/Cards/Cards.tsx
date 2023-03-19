@@ -7,15 +7,17 @@ interface ICards {
 }
 
 const Cards = ({ cards }: ICards) => {
-  return cards?.length ? (
-    <div className={styles.cards}>
-      {cards?.map((card) => (
-        <Card key={card.id} {...card} />
-      ))}
-    </div>
-  ) : (
-    <h3>Nothing found</h3>
-  );
+  if (cards?.length) {
+    return (
+      <div className={styles.cards}>
+        {cards?.map((card) => (
+          <Card key={card.id} {...card} />
+        ))}
+      </div>
+    );
+  } else {
+    return <h3>Nothing found</h3>;
+  }
 };
 
 export { Cards };
