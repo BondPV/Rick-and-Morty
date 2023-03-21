@@ -4,6 +4,7 @@ const GLOBAL_STYLES = {
 
 const TITLE = {
   MAIN: 'Rick and Morty',
+  FORM: 'Form',
   ABOUT: 'About us',
 };
 

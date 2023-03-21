@@ -28,6 +28,15 @@ class Navigation extends React.Component<IPropsNav, IStateNav> {
           Main
         </NavLink>
         <NavLink
+          to="/form"
+          className={this.setActive}
+          onClick={() => {
+            this.props.currentTitle(TITLE.FORM);
+          }}
+        >
+          Form
+        </NavLink>
+        <NavLink
           to="/about"
           className={this.setActive}
           onClick={() => {
