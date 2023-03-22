@@ -8,4 +8,9 @@ const TITLE = {
   ABOUT: 'About us',
 };
 
-export { GLOBAL_STYLES, TITLE };
+const DEFAULT_IMG = {
+  SRC: '',
+  ALT: 'not picture',
+};
+
+export { GLOBAL_STYLES, TITLE, DEFAULT_IMG };

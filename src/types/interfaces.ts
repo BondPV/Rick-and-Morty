@@ -19,4 +19,20 @@ interface ICard {
   created: string;
 }
 
-export type { ICard };
+interface IFormCard {
+  id: number;
+  name: string;
+  status: string;
+  gender: string;
+  location: string;
+  image: string;
+  created: string;
+}
+
+interface IValidation {
+  value: string;
+  regularExpression: RegExp;
+  errorMessage: string;
+}
+
+export type { ICard, IFormCard, IValidation };
