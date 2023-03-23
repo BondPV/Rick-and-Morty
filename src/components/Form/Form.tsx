@@ -29,7 +29,7 @@ class Form extends React.Component<IFormProps, IFormState> {
 
   private previewRef = React.createRef<HTMLImageElement>();
 
-  state = {
+  public state = {
     isShowAlert: false,
   };
 
@@ -55,7 +55,7 @@ class Form extends React.Component<IFormProps, IFormState> {
     this.clearInputField();
   };
 
-  clearInputField = () => {
+  private clearInputField = () => {
     this.nameRef.current!.value = '';
     this.locationRef.current!.value = '';
     this.createdRef.current!.value = '';
@@ -64,7 +64,7 @@ class Form extends React.Component<IFormProps, IFormState> {
     this.previewRef.current!.src = DEFAULT_IMG.SRC;
   };
 
-  handleDownloadImg = (event: React.ChangeEvent<HTMLInputElement>) => {
+  private handleDownloadImg = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
     const image = URL.createObjectURL(event.target.files[0]);
     event.target.src = image;

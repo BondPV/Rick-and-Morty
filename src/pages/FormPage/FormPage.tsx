@@ -13,22 +13,22 @@ interface IFormPageState {
 const alertMessage = 'Card created successfully';
 
 class FormPage extends React.Component<{}, IFormPageState> {
-  state = {
+  public state = {
     cards: [],
     isShowAlert: false,
   };
 
-  addCard = (card: IFormCard) => {
+  private addCard = (card: IFormCard) => {
     const updateCards: IFormCard[] = [...this.state.cards];
     updateCards.push(card);
     this.setState({ cards: updateCards });
   };
 
-  setIsShowAlert = (show: boolean) => {
+  private setIsShowAlert = (show: boolean) => {
     show ? this.setState({ isShowAlert: true }) : this.setState({ isShowAlert: false });
   };
 
-  render() {
+  public render() {
     return (
       <div className={GLOBAL_STYLES.CONTAINER}>
         <Form card={this.addCard} setIsShowAlert={this.setIsShowAlert} />

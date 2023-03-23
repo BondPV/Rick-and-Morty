@@ -4,15 +4,15 @@ import { Navigation } from '../Navigation/Navigation';
 import React from 'react';
 
 class Header extends React.Component<{}, { title?: string }> {
-  state = {
+  public state = {
     title: TITLE.MAIN,
   };
 
-  updateTitle = (title: string) => {
+  private updateTitle = (title: string) => {
     this.setState({ title });
   };
 
-  render() {
+  public render() {
     return (
       <header className={styles.header}>
         <div className={GLOBAL_STYLES.CONTAINER}>

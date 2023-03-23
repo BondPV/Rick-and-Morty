@@ -3,32 +3,32 @@ import { getStorage, setStorage, StorageKey } from '../../utils/localStorage';
 import styles from './Search.module.scss';
 
 class Search extends React.Component<{ searchCards: (str: string) => void }, { search?: string }> {
-  state = {
+  public state = {
     search: getStorage(StorageKey.search) || '',
   };
 
-  componentDidMount() {
+  public componentDidMount() {
     this.props.searchCards(this.state.search);
     setStorage(StorageKey.search, this.state.search);
   }
 
-  componentDidUpdate() {
+  public componentDidUpdate() {
     setStorage(StorageKey.search, this.state.search);
   }
 
-  searchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  private searchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ search: event.target.value });
     setStorage(StorageKey.search, this.state.search);
   };
 
-  handleKey = (event: React.KeyboardEvent<HTMLElement>) => {
+  private handleKey = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.key === 'Enter') {
       this.props.searchCards(this.state.search);
       setStorage(StorageKey.search, this.state.search);
     }
   };
 
-  render() {
+  public render() {
     return (
       <div className={styles.search}>
         <input

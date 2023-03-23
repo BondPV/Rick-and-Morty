@@ -9,12 +9,12 @@ interface IAlertProps {
 }
 
 class Alert extends React.Component<IAlertProps, {}> {
-  handleClose = (e: React.MouseEvent) => {
+  private handleClose = (e: React.MouseEvent) => {
     e.preventDefault();
     this.props.setIsShow(false);
   };
 
-  render() {
+  public render() {
     if (this.props.isShow) {
       setTimeout(() => this.props.setIsShow(false), 1000);
     }

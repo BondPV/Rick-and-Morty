@@ -3,7 +3,7 @@ import { GLOBAL_STYLES } from '../../constants/Constants';
 import styles from './AboutUsPage.module.scss';
 
 class AboutUsPage extends React.Component {
-  render() {
+  public render() {
     return (
       <div className={GLOBAL_STYLES.CONTAINER}>
         <div className={styles.about}>
