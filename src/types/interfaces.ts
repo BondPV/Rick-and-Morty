@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface ICard {
   id: number;
   name: string;
@@ -29,10 +31,44 @@ interface IFormCard {
   created: string;
 }
 
+interface IInputProps {
+  title: string;
+  name?: string;
+  error?: string;
+}
+
+interface IInputValueProps extends IInputProps {
+  type: 'text' | 'date' | 'checkbox';
+  placeholder?: string;
+  forwardedRef: React.RefObject<HTMLInputElement>;
+}
+
+interface IInputSelectProps extends IInputProps {
+  children: React.ReactNode;
+  forwardedRef: React.RefObject<HTMLSelectElement>;
+}
+
+interface elementRadioButton {
+  name: string;
+  value: string;
+  forwardedRef: React.RefObject<HTMLInputElement>;
+}
+
+interface IInputRadioProps extends IInputProps {
+  elements: elementRadioButton[];
+}
+
 interface IValidation {
   value: string;
   regularExpression: RegExp;
   errorMessage: string;
 }
 
-export type { ICard, IFormCard, IValidation };
+export type {
+  ICard,
+  IFormCard,
+  IInputValueProps,
+  IInputSelectProps,
+  IInputRadioProps,
+  IValidation,
+};

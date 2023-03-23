@@ -43,6 +43,11 @@ $height-preview: 150px;
     }
   }
 
+  &__radio {
+    display: flex;
+    gap: 1rem;
+  }
+
   &__preview {
     position: relative;
     width: 100%;
@@ -56,7 +61,7 @@ $height-preview: 150px;
   }
 
   input[type=radio] {
-    margin:0 0.5rem;
+    margin-right: 0.5rem;
   }
 
   input[type=checkbox] {
@@ -92,4 +97,12 @@ $height-preview: 150px;
     background-color: $main-color;
     @include button;
   }
+}
+
+.hide {
+  display: none;
+}
+
+.error {
+  color: $color-danger;
 }
