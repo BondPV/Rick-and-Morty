@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.search {
+  margin-top: 1.5rem;
+  display: flex;
+  width: 100%;
+  @include box-shadow;
+  border: 2px solid $main-color;
+
+  &__input {
+    width: 100%;
+    border-right: none;
+    padding: 0.5rem;
+    border: transparent;
+    outline: none;
+    font-size: 1.2rem;
+  }
+
+  &__btn {
+    background-color: $main-color;
+    @include button;
+  }
+}
+
