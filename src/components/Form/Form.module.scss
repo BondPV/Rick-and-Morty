@@ -1,0 +1,95 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+
+$height-preview: 150px;
+
+.wrapper {
+  margin: 2rem 0;
+  padding: 2rem;
+  @include box-shadow;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 2rem;
+  width: 100%;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+  }
+
+  &__label {
+    width: 100%;
+    height: $height-preview;
+    border: 2px dashed $main-color;
+    border-radius: 5px;
+    display: block;
+    transition: border 300ms ease;
+    cursor: pointer;
+    text-align: center;
+
+    &:hover {
+      border: 2px solid $main-color;
+    }
+  }
+
+  &__preview {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  input {
+    outline:none;
+    border: none;
+    border-bottom: 2px solid $main-color;
+  }
+
+  input[type=radio] {
+    margin:0 0.5rem;
+  }
+
+  input[type=checkbox] {
+    width: 1.2rem;
+  }
+
+  input[type=file] {
+    outline: 0;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  select {
+    width: 100%;
+    outline:none;
+    border: none;
+    border-bottom: 2px solid $main-color;
+  }
+
+  img {
+    position: absolute;
+    top: 0rem;
+    left: 50%;
+    transform: translate(-50%);
+    height: $height-preview;
+    width: auto;
+    z-index: -1;
+  }
+
+  &__button {
+    margin-top: 1rem;
+    background-color: $main-color;
+    @include button;
+  }
+}

@@ -3,6 +3,7 @@
 
 .card {
   @include box-shadow;
+  padding: 0.5rem;
 
   &__title {
     margin: 0.5rem 0;
@@ -12,8 +13,11 @@
   }
 
   &__img-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    aspect-ratio: 1/1;
+    height: 15rem;
     overflow: hidden;
   }
 

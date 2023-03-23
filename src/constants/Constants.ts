@@ -1,3 +1,5 @@
+import placeholder from '../assets/placeholder.png';
+
 const GLOBAL_STYLES = {
   CONTAINER: 'container',
 };
@@ -9,8 +11,8 @@ const TITLE = {
 };
 
 const DEFAULT_IMG = {
-  SRC: '',
-  ALT: 'not picture',
+  SRC: placeholder,
+  ALT: 'upload image',
 };
 
 export { GLOBAL_STYLES, TITLE, DEFAULT_IMG };
