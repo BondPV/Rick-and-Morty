@@ -45,18 +45,18 @@ class Form extends React.Component<IFormProps, IFormState> {
   private handleSubmit = () => {
     const newCard: IFormCard = {
       id: new Date().getTime(),
-      name: this.elemRef.name.current!.value,
-      location: this.elemRef.location.current!.value,
-      created: this.elemRef.created.current!.value,
+      name: this.elemRef.name.current?.value || '',
+      location: this.elemRef.location.current?.value || '',
+      created: this.elemRef.created.current?.value || '',
       gender: '',
-      status: this.elemRef.status.current!.checked ? this.elemRef.status.current!.name : '',
-      image: this.elemRef.image.current!.src,
+      status: this.elemRef.status.current?.checked ? this.elemRef.status.current!.name : '',
+      image: this.elemRef.image.current?.src || '',
     };
 
     const genderChecked = this.elemRef.gender.find((el) => el.current?.checked);
 
     if (genderChecked) {
-      newCard.gender = genderChecked.current!.value;
+      newCard.gender = genderChecked.current?.value || '';
     }
 
     const validate = this.validate(newCard);
