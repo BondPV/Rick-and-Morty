@@ -11,6 +11,7 @@ const InputValue = (props: IInputValueProps) => {
           type={props.type}
           name={props.name}
           id={props.name}
+          maxLength={props.maxLength}
           placeholder={props.placeholder}
           ref={props.forwardedRef}
         />

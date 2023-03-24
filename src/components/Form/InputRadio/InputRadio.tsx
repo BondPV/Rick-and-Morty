@@ -13,7 +13,7 @@ const InputRadio = (props: IInputRadioProps) => {
               <div key={el.value}>
                 <input
                   type="radio"
-                  name={el.name}
+                  name={props.name}
                   id={el.value}
                   value={el.value}
                   ref={el.forwardedRef}

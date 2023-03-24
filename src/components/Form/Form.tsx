@@ -1,10 +1,12 @@
 import React from 'react';
-import { IFormCard } from '../../types/interfaces';
+import { IErrorMessage, IFormCard } from '../../types/interfaces';
 import { DEFAULT_IMG } from '../../constants/Constants';
 import { InputValue } from './InputValue/InputValue';
 import { InputSelect } from './InputSelect/InputSelect';
-import styles from './Form.module.scss';
 import { InputRadio } from './InputRadio/InputRadio';
+import { InputFile } from './InputFile/InputFile';
+import { checkFormError } from '../../utils/checkFormErrors';
+import styles from './Form.module.scss';
 
 interface IFormProps {
   card: (card: IFormCard) => void;
@@ -12,30 +14,11 @@ interface IFormProps {
 }
 
 interface IFormState {
-  errorMessage: {
-    name?: string;
-    created?: string;
-    location?: string;
-    gender?: string;
-    status?: string;
-  };
+  errorMessage: IErrorMessage;
   isShowAlert: boolean;
 }
 
 class Form extends React.Component<IFormProps, IFormState> {
-  private elementsRef = {
-    name: React.createRef<HTMLInputElement>(),
-    location: React.createRef<HTMLSelectElement>(),
-    created: React.createRef<HTMLInputElement>(),
-    status: React.createRef<HTMLInputElement>(),
-    gender: {
-      male: React.createRef<HTMLInputElement>(),
-      female: React.createRef<HTMLInputElement>(),
-    },
-    image: React.createRef<HTMLInputElement>(),
-    preview: React.createRef<HTMLImageElement>(),
-  };
-
   public state = {
     errorMessage: {
       name: '',
@@ -43,70 +26,96 @@ class Form extends React.Component<IFormProps, IFormState> {
       location: '',
       gender: '',
       status: '',
+      image: '',
     },
     isShowAlert: false,
+  };
+
+  private elemRef = {
+    form: React.createRef<HTMLFormElement>(),
+    name: React.createRef<HTMLInputElement>(),
+    location: React.createRef<HTMLSelectElement>(),
+    created: React.createRef<HTMLInputElement>(),
+    status: React.createRef<HTMLInputElement>(),
+    gender: [React.createRef<HTMLInputElement>(), React.createRef<HTMLInputElement>()],
+    image: React.createRef<HTMLInputElement>(),
+    preview: React.createRef<HTMLImageElement>(),
   };
 
   private handleSubmit = () => {
     const newCard: IFormCard = {
       id: new Date().getTime(),
-      name: this.elementsRef.name.current!.value,
-      location: this.elementsRef.location.current!.value,
-      created: this.elementsRef.created.current!.value,
-      gender: this.elementsRef.gender.male.current!.checked
-        ? this.elementsRef.gender.male.current!.value
-        : this.elementsRef.gender.female.current!.value,
-      status: this.elementsRef.status.current!.checked ? this.elementsRef.status.current!.name : '',
-      image: this.elementsRef.image.current!.src,
+      name: this.elemRef.name.current!.value,
+      location: this.elemRef.location.current!.value,
+      created: this.elemRef.created.current!.value,
+      gender: '',
+      status: this.elemRef.status.current!.checked ? this.elemRef.status.current!.name : '',
+      image: this.elemRef.image.current!.src,
     };
 
-    this.props.card(newCard);
+    const genderChecked = this.elemRef.gender.find((el) => el.current?.checked);
 
-    this.setState({ isShowAlert: true });
+    if (genderChecked) {
+      newCard.gender = genderChecked.current!.value;
+    }
 
-    this.props.setIsShowAlert(true);
+    const validate = this.validate(newCard);
 
-    this.clearInputField();
+    if (validate) {
+      this.props.card(newCard);
+
+      this.setState({ isShowAlert: true });
+
+      this.props.setIsShowAlert(true);
+
+      this.clearInputField();
+    }
   };
 
   private clearInputField = () => {
-    this.elementsRef.name.current!.value = '';
-    this.elementsRef.location.current!.value = '';
-    this.elementsRef.created.current!.value = '';
-    this.elementsRef.gender.male.current!.checked = false;
-    this.elementsRef.gender.female.current!.checked = false;
-    this.elementsRef.status.current!.checked = false;
-    this.elementsRef.image.current!.src = '';
-    this.elementsRef.preview.current!.src = DEFAULT_IMG.SRC;
+    this.elemRef.form.current?.reset();
+    this.elemRef.image.current!.src = '';
+    this.elemRef.preview.current!.src = DEFAULT_IMG.SRC;
   };
 
-  private handleDownloadImg = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!event.target.files) return;
-    const image = URL.createObjectURL(event.target.files[0]);
-    event.target.src = image;
-    this.elementsRef.preview.current!.src = image;
-    this.elementsRef.preview.current!.alt = this.elementsRef.name.current!.value;
+  private handelImageSrc = (src: string) => {
+    this.elemRef.image.current!.src = src;
+    this.elemRef.preview.current!.src = src;
+    this.elemRef.preview.current!.alt = this.elemRef.name.current!.value;
+  };
+
+  private validate = (card: IFormCard) => {
+    const errors: IErrorMessage = checkFormError(card);
+
+    this.setState({ ...this.state, errorMessage: errors });
+
+    if (Object.values(errors).length) {
+      return false;
+    }
+
+    return true;
   };
 
   public render() {
     return (
       <div className={styles.wrapper}>
-        <form className={styles.form}>
+        <form className={styles.form} ref={this.elemRef.form}>
           <div className={styles.form__wrapper}>
             <InputValue
               title="Name"
               type="text"
               name="name"
+              maxLength={40}
               placeholder="Person`s name"
               error={this.state.errorMessage?.name}
-              forwardedRef={this.elementsRef.name}
+              forwardedRef={this.elemRef.name}
             />
 
             <InputSelect
               title="Location"
               name="location"
               error={this.state.errorMessage?.location}
-              forwardedRef={this.elementsRef.location}
+              forwardedRef={this.elemRef.location}
             >
               <option defaultValue="Select location" hidden></option>
               <option value="Earth (C-137)">Earth C-137</option>
@@ -120,15 +129,16 @@ class Form extends React.Component<IFormProps, IFormState> {
               type="date"
               name="created"
               error={this.state.errorMessage?.created}
-              forwardedRef={this.elementsRef.created}
+              forwardedRef={this.elemRef.created}
             />
 
             <InputRadio
               title="Gender"
+              name="gender"
               error={this.state.errorMessage?.gender}
               elements={[
-                { name: 'gender', value: 'male', forwardedRef: this.elementsRef.gender.male },
-                { name: 'gender', value: 'female', forwardedRef: this.elementsRef.gender.female },
+                { value: 'male', forwardedRef: this.elemRef.gender[0] },
+                { value: 'female', forwardedRef: this.elemRef.gender[1] },
               ]}
             />
 
@@ -137,19 +147,17 @@ class Form extends React.Component<IFormProps, IFormState> {
               name="alive"
               type="checkbox"
               error={this.state.errorMessage?.status}
-              forwardedRef={this.elementsRef.status}
+              forwardedRef={this.elemRef.status}
             />
           </div>
           <div className={styles.form__preview}>
-            <label className={styles.form__label} htmlFor="img"></label>
-            <img src={DEFAULT_IMG.SRC} alt={DEFAULT_IMG.ALT} ref={this.elementsRef.preview} />
-            <input
-              type="file"
-              id="img"
+            <InputFile
               name="image"
-              onChange={this.handleDownloadImg}
-              ref={this.elementsRef.image}
-            ></input>
+              error={this.state.errorMessage?.image}
+              src={this.handelImageSrc}
+              forwardedRef={this.elemRef.image}
+            />
+            <img src={DEFAULT_IMG.SRC} alt={DEFAULT_IMG.ALT} ref={this.elemRef.preview} />
           </div>
         </form>
         <button className={styles.form__button} onClick={this.handleSubmit}>

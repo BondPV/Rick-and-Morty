@@ -15,4 +15,7 @@ const DEFAULT_IMG = {
   ALT: 'upload image',
 };
 
-export { GLOBAL_STYLES, TITLE, DEFAULT_IMG };
+const REGULAR_EXP_NAME =
+  /^([а-яА-Яa-zA-Z0-9-!@#$%^&*]{3,}[ ][а-яА-Яa-zA-Z0-9-!@#$%^&*]{3,}|[а-яА-Яa-zA-Z0-9-!@#$%^&*]{3,})/gm;
+
+export { GLOBAL_STYLES, TITLE, DEFAULT_IMG, REGULAR_EXP_NAME };

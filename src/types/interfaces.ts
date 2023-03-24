@@ -40,6 +40,7 @@ interface IInputProps {
 interface IInputValueProps extends IInputProps {
   type: 'text' | 'date' | 'checkbox';
   placeholder?: string;
+  maxLength?: number;
   forwardedRef: React.RefObject<HTMLInputElement>;
 }
 
@@ -49,7 +50,6 @@ interface IInputSelectProps extends IInputProps {
 }
 
 interface elementRadioButton {
-  name: string;
   value: string;
   forwardedRef: React.RefObject<HTMLInputElement>;
 }
@@ -58,17 +58,21 @@ interface IInputRadioProps extends IInputProps {
   elements: elementRadioButton[];
 }
 
-interface IValidation {
-  value: string;
-  regularExpression: RegExp;
-  errorMessage: string;
+interface IErrorMessage {
+  name?: string;
+  created?: string;
+  location?: string;
+  gender?: string;
+  status?: string;
+  image?: string;
 }
 
 export type {
   ICard,
   IFormCard,
+  IInputProps,
   IInputValueProps,
   IInputSelectProps,
   IInputRadioProps,
-  IValidation,
+  IErrorMessage,
 };
