@@ -1,25 +1,25 @@
-@import '../../styles/variables.scss';
-@import '../../styles/mixins.scss';
+@import '../../styles/variables';
+@import '../../styles/mixins';
 
 .card {
   @include box-shadow;
   padding: 0.5rem;
 
   &__title {
-    margin: 0.5rem 0;
-    text-align: center;
-    font-size: 1.2rem;
     border-bottom: 2px solid $main-color;
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+    text-align: center;
     word-wrap: break-word;
   }
 
   &__img-wrap {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
     width: 100%;
     height: 15rem;
-    overflow: hidden;
+    align-items: center;
+    justify-content: center;
   }
 
   &__img {
@@ -27,8 +27,8 @@
   }
 
   &__description {
+    overflow: hidden;
     padding: 0.5rem;
     gap: 0.3rem;
-    overflow: hidden;
   }
 }

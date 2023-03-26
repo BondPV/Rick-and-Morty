@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import '../../styles/variables';
 
 .header {
   background-color: $main-color;
@@ -9,11 +9,10 @@
 
   &__wrapper {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 
   &__title {

@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import '../../styles/variables';
 
 .about {
   margin: 0 auto;
@@ -9,7 +9,7 @@
   }
 
   span {
-    font-size: 1.5rem;
     color: $main-color;
+    font-size: 1.5rem;
   }
 }

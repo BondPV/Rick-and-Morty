@@ -1,19 +1,19 @@
-@import '../../styles/variables.scss';
+@import '../../styles/variables';
 
 .footer {
   background-color: $main-color;
 
   &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
   
   &__logo {
-    height: auto;
     width: 80px;
+    height: auto;
     opacity: 0.5;
     transition: 0.3s all;
     
@@ -23,15 +23,15 @@
   }
 
   &__github {
-    text-decoration: inherit;
     opacity: 0.5;
+    text-decoration: inherit;
     transition: 0.3s all;
 
     &:hover {
       opacity: 1;
     }
 
-    &:before {
+    &::before {
       content: '©';
     }
   }
