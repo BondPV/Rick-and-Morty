@@ -1,6 +1,8 @@
 import { REGULAR_EXP_NAME } from '../constants/Constants';
 import { IErrorMessage, IFormCard } from '../types/interfaces';
 
+const simpleErrorMessage = 'field is required';
+
 const checkFormError = (field: IFormCard) => {
   const errors: IErrorMessage = {};
 
@@ -9,27 +11,27 @@ const checkFormError = (field: IFormCard) => {
   }
 
   if (!field.name) {
-    errors.name = 'field is required';
+    errors.name = simpleErrorMessage;
   }
 
   if (!field.location) {
-    errors.location = 'field is required';
+    errors.location = simpleErrorMessage;
   }
 
   if (!field.created) {
-    errors.created = 'field is required';
+    errors.created = simpleErrorMessage;
   }
 
   if (!field.gender) {
-    errors.gender = 'field is required';
+    errors.gender = simpleErrorMessage;
   }
 
   if (!field.status) {
-    errors.status = 'field is required';
+    errors.status = simpleErrorMessage;
   }
 
   if (!field.image || !field.image.match('blob')) {
-    errors.image = 'field is required';
+    errors.image = simpleErrorMessage;
   }
 
   return errors;

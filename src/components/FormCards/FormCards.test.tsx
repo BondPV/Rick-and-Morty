@@ -24,16 +24,14 @@ const cards: IFormCard[] = [
 ];
 
 describe('Form CardsList component', () => {
-  const notCards = undefined;
-
-  test('renders list of cards', () => {
+  test('should renders list of cards', () => {
     render(<FormCards cards={cards} />);
 
     expect(cards.length).toBe(2);
   });
 
-  test('renders not cars of list', () => {
-    render(<FormCards cards={notCards} />);
+  test('should renders not cars of list', () => {
+    render(<FormCards />);
 
     expect(screen.getByText('No cards created')).toBeInTheDocument();
   });

@@ -2,7 +2,7 @@ import { screen, render } from '@testing-library/react';
 import { Footer } from './Footer';
 
 describe('Footer', () => {
-  test('render footer component', () => {
+  test('should render footer component', () => {
     render(<Footer />);
 
     expect(screen.getByText('2023')).toBeInTheDocument();

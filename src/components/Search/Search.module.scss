@@ -2,12 +2,11 @@
 @import '../../styles/mixins';
 
 .search {
+  @include box-shadow;
   display: flex;
   width: 100%;
   border: 2px solid $main-color;
   margin-top: 1.5rem;
-
-  @include box-shadow;
 
   &__input {
     width: 100%;
@@ -19,9 +18,8 @@
   }
 
   &__btn {
-    background-color: $main-color;
-
     @include button;
+    background-color: $main-color;
   }
 }
 

@@ -15,9 +15,9 @@ const FormCards = ({ cards }: IFormCards) => {
         ))}
       </div>
     );
-  } else {
-    return <h3>No cards created</h3>;
   }
+
+  return <h3>No cards created</h3>;
 };
 
 export { FormCards };

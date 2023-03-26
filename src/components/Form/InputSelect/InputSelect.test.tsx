@@ -5,7 +5,7 @@ import { InputSelect } from './InputSelect';
 describe('InputSelect', () => {
   const forwardedRef = React.createRef<HTMLSelectElement>();
 
-  test('render select component', () => {
+  test('should render select component', () => {
     render(
       <InputSelect title="Test title" name="test" forwardedRef={forwardedRef}>
         <option value="test-value-1">Value 1</option>

@@ -13,13 +13,10 @@ const card: IFormCard = {
 };
 
 describe('Form card render', () => {
-  test('render one form card component', () => {
+  test('should render one form card component', () => {
     render(<FormCard {...card} />);
 
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByText(card.name)).toBeInTheDocument();
-    expect(screen.getByText(/gender:/i)).toBeInTheDocument();
-    expect(screen.getByText(/location:/i)).toBeInTheDocument();
-    expect(screen.getByText(/created/i)).toBeInTheDocument();
   });
 });

@@ -8,26 +8,24 @@ interface IInputFileProps {
   forwardedRef: React.RefObject<HTMLInputElement>;
 }
 
-const InputFile = (props: IInputFileProps) => {
-  return (
-    <>
-      <label
-        className={css(styles.form__label, props.error && styles.form__label_error)}
-        htmlFor={props.name}
-      ></label>
-      <input
-        type="file"
-        id={props.name}
-        name={props.name}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          if (event.target.files) {
-            props.src(URL.createObjectURL(event.target.files[0]));
-          }
-        }}
-        ref={props.forwardedRef}
-      ></input>
-    </>
-  );
-};
+const InputFile = ({ name, error, src, forwardedRef }: IInputFileProps) => (
+  <>
+    <label
+      className={css(styles.form__label, error && styles.form__label_error)}
+      htmlFor={name}
+    ></label>
+    <input
+      type="file"
+      id={name}
+      name={name}
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+          src(URL.createObjectURL(event.target.files[0]));
+        }
+      }}
+      ref={forwardedRef}
+    ></input>
+  </>
+);
 
 export { InputFile };

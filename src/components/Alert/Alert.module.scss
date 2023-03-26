@@ -2,6 +2,7 @@
 @import '../../styles/mixins';
 
 .alert {
+  @include box-shadow;
   position: absolute;
   z-index: 100;
   top: 18rem;
@@ -15,8 +16,6 @@
   background-color: $main-color;
   text-align: center;
   transform: translateX(-50%);
-
-  @include box-shadow;
 }
 
 .close_btn {

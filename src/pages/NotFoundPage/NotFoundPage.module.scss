@@ -18,10 +18,10 @@
 .not-found {
   span {
     &::first-letter {
-    letter-spacing: 12vmax; 
+      letter-spacing: 12vmax; 
     }
-    position: relative;
 
+    position: relative;
     display: block;
     overflow: hidden;
     width: fit-content;
@@ -56,11 +56,10 @@
   }
 
   a {
+    @include button;
     background-color: $main-color;
     color: #000;
     text-decoration: none;
-
-    @include button;
   }
 }
 

@@ -1,14 +1,13 @@
 @import '../../styles/variables';
 @import '../../styles/mixins';
 
-
 $height-preview: 200px;
 
 .wrapper {
+  @include box-shadow;
+
   padding: 2rem;
   margin: 2rem 0;
-
-  @include box-shadow;
 }
 
 .form {
@@ -104,10 +103,9 @@ $height-preview: 200px;
   }
 
   &__button {
+    @include button;
     margin-top: 1rem;
     background-color: $main-color;
-
-    @include button;
   }
 }
 

@@ -2,23 +2,29 @@ import css from 'classnames';
 import { IInputValueProps } from '../../../types/interfaces';
 import styles from '../Form.module.scss';
 
-const InputValue = (props: IInputValueProps) => {
-  return (
-    <div>
-      <div className={styles.form__row}>
-        <label htmlFor={props.name}>{props.title}</label>
-        <input
-          type={props.type}
-          name={props.name}
-          id={props.name}
-          maxLength={props.maxLength}
-          placeholder={props.placeholder}
-          ref={props.forwardedRef}
-        />
-      </div>
-      <div className={css(styles.error, !props.error && styles.hide)}>{props.error}</div>
+const InputValue = ({
+  name,
+  title,
+  type,
+  maxLength,
+  placeholder,
+  forwardedRef,
+  error,
+}: IInputValueProps) => (
+  <div>
+    <div className={styles.form__row}>
+      <label htmlFor={name}>{title}</label>
+      <input
+        type={type}
+        name={name}
+        id={name}
+        maxLength={maxLength}
+        placeholder={placeholder}
+        ref={forwardedRef}
+      />
     </div>
-  );
-};
+    <div className={css(styles.error, !error && styles.hide)}>{error}</div>
+  </div>
+);
 
 export { InputValue };

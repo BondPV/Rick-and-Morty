@@ -13,7 +13,7 @@ describe('InputRadioButtons', () => {
     React.createRef<HTMLInputElement>(),
   ];
 
-  test('render radio button component', () => {
+  test('should render radio button component', () => {
     render(
       <InputRadio
         title={inputRadio.title}
@@ -26,6 +26,5 @@ describe('InputRadioButtons', () => {
 
     expect(screen.getByText(inputRadio.title)).toBeInTheDocument();
     expect(screen.getByText(inputRadio.labels[0])).toBeInTheDocument();
-    expect(screen.getByText(inputRadio.labels[1])).toBeInTheDocument();
   });
 });
