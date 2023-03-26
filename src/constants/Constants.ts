@@ -10,6 +10,13 @@ const TITLE = {
   ABOUT: 'About us',
 };
 
+const LOCATIONS = [
+  'Earth (C-137)',
+  'Earth (Replacement Dimension)',
+  'Citadel of Ricks',
+  'Abadango',
+];
+
 const DEFAULT_IMG = {
   SRC: placeholder,
   ALT: 'upload image',
@@ -18,4 +25,4 @@ const DEFAULT_IMG = {
 const REGULAR_EXP_NAME =
   /^([а-яА-Яa-zA-Z0-9-!@#$%^&*]{3,}[ ][а-яА-Яa-zA-Z0-9-!@#$%^&*]{3,}|[а-яА-Яa-zA-Z0-9-!@#$%^&*]{3,})/gm;
 
-export { GLOBAL_STYLES, TITLE, DEFAULT_IMG, REGULAR_EXP_NAME };
+export { GLOBAL_STYLES, TITLE, LOCATIONS, DEFAULT_IMG, REGULAR_EXP_NAME };

@@ -45,7 +45,7 @@ interface IInputValueProps extends IInputProps {
 }
 
 interface IInputSelectProps extends IInputProps {
-  children: React.ReactNode;
+  options: string[];
   forwardedRef: React.RefObject<HTMLSelectElement>;
 }
 

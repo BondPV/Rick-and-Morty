@@ -1,6 +1,6 @@
 import React from 'react';
 import { IErrorMessage, IFormCard } from '../../types/interfaces';
-import { DEFAULT_IMG } from '../../constants/Constants';
+import { LOCATIONS, DEFAULT_IMG } from '../../constants/Constants';
 import { InputValue } from './InputValue/InputValue';
 import { InputSelect } from './InputSelect/InputSelect';
 import { InputRadio } from './InputRadio/InputRadio';
@@ -115,14 +115,9 @@ class Form extends React.Component<IFormProps, IFormState> {
               title="Location"
               name="location"
               error={this.state.errorMessage?.location}
+              options={LOCATIONS}
               forwardedRef={this.elemRef.location}
-            >
-              <option defaultValue="Select location" hidden></option>
-              <option value="Earth (C-137)">Earth C-137</option>
-              <option value="Citadel of Ricks">Citadel of Ricks</option>
-              <option value="Earth (Replacement Dimension)">Earth Replacement Dimension</option>
-              <option value="Abadango">Abadango</option>
-            </InputSelect>
+            />
 
             <InputValue
               title="Created"
