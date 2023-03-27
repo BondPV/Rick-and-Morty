@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Search } from '../../components/Search/Search';
 import { Cards } from '../../components/Cards/Cards';
 import { ICard } from '../../types/interfaces';

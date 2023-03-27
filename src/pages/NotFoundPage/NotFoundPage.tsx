@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { GLOBAL_STYLES } from '../../constants/Constants';
 import styles from './NotFoundPage.module.scss';

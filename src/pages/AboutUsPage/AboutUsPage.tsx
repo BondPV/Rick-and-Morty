@@ -1,4 +1,3 @@
-import React from 'react';
 import { GLOBAL_STYLES } from '../../constants/Constants';
 import styles from './AboutUsPage.module.scss';
 
