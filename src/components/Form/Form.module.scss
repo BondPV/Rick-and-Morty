@@ -1,0 +1,120 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+$height-preview: 200px;
+
+.wrapper {
+  @include box-shadow;
+
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.form {
+  display: grid;
+  width: 100%;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+
+  &__wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  &__label {
+    display: block;
+    width: 100%;
+    height: $height-preview;
+    border: 2px dashed $main-color;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: border 300ms ease;
+
+    &_error {
+      border-color: $color-danger;
+    }
+
+    &:hover {
+      border: 2px solid $main-color;
+    }
+  }
+
+  &__radio {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__preview {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  input {
+    border: none;
+    border-bottom: 2px solid $main-color;
+    outline:none;
+  }
+
+  input[type="radio"] {
+    margin-right: 0.5rem;
+  }
+
+  input[type="checkbox"] {
+    width: 1.2rem;
+  }
+
+  input[type="date"],
+  input[type="text"] {
+    width: 100%;
+  }
+
+  input[type="file"] {
+    height: 0;
+    opacity: 0;
+    outline: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  select {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid $main-color;
+    outline:none;
+  }
+
+  img {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 50%;
+    width: auto;
+    height: $height-preview;
+    transform: translate(-50%);
+  }
+
+  &__button {
+    @include button;
+    margin-top: 1rem;
+    background-color: $main-color;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.error {
+  position: absolute;
+  color: $color-danger;
+  font-size: 0.8rem;
+}

@@ -4,7 +4,7 @@ import { GLOBAL_STYLES } from '../../constants/Constants';
 import styles from './NotFoundPage.module.scss';
 
 class NotFoundPage extends React.Component {
-  render() {
+  public render() {
     return (
       <div className={GLOBAL_STYLES.CONTAINER}>
         <div className={styles.wrapper}>

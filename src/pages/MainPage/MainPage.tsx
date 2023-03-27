@@ -7,22 +7,22 @@ import database from '../../database/source.json';
 import { getStorage, StorageKey } from '../../utils/localStorage';
 
 class MainPage extends React.Component<{}, { cards?: ICard[] }> {
-  state = {
+  public state = {
     cards: [],
   };
 
-  componentDidMount() {
+  public componentDidMount() {
     this.searchForDatabase(getStorage(StorageKey.search) || '');
   }
 
-  searchForDatabase = (str: string) => {
+  private searchForDatabase = (str: string) => {
     const findCards = database.results.filter((card) =>
       card.name.toLowerCase().includes(str.toLowerCase())
     );
     this.setState({ cards: findCards });
   };
 
-  render() {
+  public render() {
     return (
       <div className={GLOBAL_STYLES.CONTAINER}>
         <Search searchCards={this.searchForDatabase} />
