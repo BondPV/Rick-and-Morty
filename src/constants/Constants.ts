@@ -4,11 +4,11 @@ const GLOBAL_STYLES = {
   CONTAINER: 'container',
 };
 
-const TITLE = {
-  MAIN: 'Rick and Morty',
-  FORM: 'Form',
-  ABOUT: 'About us',
-};
+const ROUTE_LINKS = [
+  { PATH: '/', LINK: 'Main', TITLE: 'Rick and Morty' },
+  { PATH: '/form', LINK: 'Form', TITLE: 'Form' },
+  { PATH: '/about', LINK: 'About', TITLE: 'About us' },
+];
 
 const LOCATIONS = [
   'Earth (C-137)',
@@ -25,4 +25,4 @@ const DEFAULT_IMG = {
 const REGULAR_EXP_NAME =
   /^([а-яА-Яa-zA-Z0-9-!@#$%^&*]{3,}[ ][а-яА-Яa-zA-Z0-9-!@#$%^&*]{3,}|[а-яА-Яa-zA-Z0-9-!@#$%^&*]{3,})/gm;
 
-export { GLOBAL_STYLES, TITLE, LOCATIONS, DEFAULT_IMG, REGULAR_EXP_NAME };
+export { GLOBAL_STYLES, ROUTE_LINKS, LOCATIONS, DEFAULT_IMG, REGULAR_EXP_NAME };
