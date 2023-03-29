@@ -1,31 +1,41 @@
 import css from 'classnames';
+import { useFormContext } from 'react-hook-form';
+import { ERROR_MESSAGE } from '../../../constants/Constants';
 import styles from '../Form.module.scss';
 
 interface IInputFileProps {
   name: string;
-  error?: string;
   src: (str: string) => void;
-  forwardedRef: React.RefObject<HTMLInputElement>;
 }
 
-const InputFile = ({ name, error, src, forwardedRef }: IInputFileProps) => (
-  <>
-    <label
-      className={css(styles.form__label, error && styles.form__label_error)}
-      htmlFor={name}
-    ></label>
-    <input
-      type="file"
-      id={name}
-      name={name}
-      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files) {
-          src(URL.createObjectURL(event.target.files[0]));
+const InputFile = ({ name, src }: IInputFileProps) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  return (
+    <>
+      <label
+        className={
+          !errors[name] ? styles.form__label : css(styles.form__label, styles.form__label_error)
         }
-      }}
-      ref={forwardedRef}
-    ></input>
-  </>
-);
+        htmlFor={name}
+      ></label>
+      <input
+        type="file"
+        id={name}
+        {...register(name, {
+          required: ERROR_MESSAGE.REQUIRED,
+        })}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          if (event.target.files) {
+            src(URL.createObjectURL(event.target.files[0]));
+          }
+        }}
+      ></input>
+    </>
+  );
+};
 
 export { InputFile };

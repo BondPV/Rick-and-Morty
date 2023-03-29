@@ -1,30 +1,45 @@
-import css from 'classnames';
-import { IInputValueProps } from '../../../types/interfaces';
+import { useFormContext } from 'react-hook-form';
+import { ERROR_MESSAGE } from '../../../constants/Constants';
 import styles from '../Form.module.scss';
 
-const InputValue = ({
-  name,
-  title,
-  type,
-  maxLength,
-  placeholder,
-  forwardedRef,
-  error,
-}: IInputValueProps) => (
-  <div>
-    <div className={styles.form__row}>
-      <label htmlFor={name}>{title}</label>
-      <input
-        type={type}
-        name={name}
-        id={name}
-        maxLength={maxLength}
-        placeholder={placeholder}
-        ref={forwardedRef}
-      />
+interface IInputValueProps {
+  title: string;
+  name: string;
+  type: 'text' | 'date' | 'checkbox';
+  placeholder?: string;
+  minLength?: number;
+  maxLength?: number;
+}
+
+const InputValue = ({ title, name, type, placeholder, minLength, maxLength }: IInputValueProps) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  return (
+    <div>
+      <div className={styles.form__row}>
+        <label htmlFor={name}>{title}</label>
+        <input
+          id={name}
+          type={type}
+          placeholder={placeholder}
+          maxLength={maxLength}
+          {...register(name, {
+            required: ERROR_MESSAGE.REQUIRED,
+            minLength: {
+              value: minLength || 0,
+              message: `Field must contain at least ${minLength} characters`,
+            },
+          })}
+        />
+      </div>
+      <div className={styles.error}>
+        {errors[name] && `${errors[name]?.message || ERROR_MESSAGE.DEFAULT}`}
+      </div>
     </div>
-    <div className={css(styles.error, !error && styles.hide)}>{error}</div>
-  </div>
-);
+  );
+};
 
 export { InputValue };

@@ -17,12 +17,27 @@ const LOCATIONS = [
   'Abadango',
 ];
 
+const GENDER = ['male', 'female'];
+
 const DEFAULT_IMG = {
   SRC: placeholder,
   ALT: 'upload image',
 };
 
+const ERROR_MESSAGE = {
+  DEFAULT: 'error',
+  REQUIRED: 'field is required',
+};
+
 const REGULAR_EXP_NAME =
   /^([а-яА-Яa-zA-Z0-9-!@#$%^&*]{3,}[ ][а-яА-Яa-zA-Z0-9-!@#$%^&*]{3,}|[а-яА-Яa-zA-Z0-9-!@#$%^&*]{3,})/gm;
 
-export { GLOBAL_STYLES, ROUTE_LINKS, LOCATIONS, DEFAULT_IMG, REGULAR_EXP_NAME };
+export {
+  GLOBAL_STYLES,
+  ROUTE_LINKS,
+  LOCATIONS,
+  GENDER,
+  DEFAULT_IMG,
+  ERROR_MESSAGE,
+  REGULAR_EXP_NAME,
+};

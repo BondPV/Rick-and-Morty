@@ -7,7 +7,7 @@ const Header = () => {
   const pathname = useLocation().pathname;
 
   const setTitle = (pathname: string) => {
-    const [MAIN, ,] = ROUTE_LINKS;
+    const [MAIN] = ROUTE_LINKS;
     const currentTitle = ROUTE_LINKS.find((route) => route.PATH === pathname)?.TITLE;
 
     return currentTitle || MAIN.TITLE;
