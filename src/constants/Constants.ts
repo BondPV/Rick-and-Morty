@@ -29,8 +29,8 @@ const ERROR_MESSAGE = {
   REQUIRED: 'field is required',
 };
 
-const REGULAR_EXP_NAME =
-  /^([а-яА-Яa-zA-Z0-9-!@#$%^&*]{3,}[ ][а-яА-Яa-zA-Z0-9-!@#$%^&*]{3,}|[а-яА-Яa-zA-Z0-9-!@#$%^&*]{3,})/gm;
+const REGEX_ANY = /^.*$/;
+const REGEX_NAME = /^(?:[A-ZА-ЯЁ][a-zа-яё]*\s){0,2}[A-ZА-ЯЁ][a-zа-яё]*$/;
 
 export {
   GLOBAL_STYLES,
@@ -39,5 +39,6 @@ export {
   GENDER,
   DEFAULT_IMG,
   ERROR_MESSAGE,
-  REGULAR_EXP_NAME,
+  REGEX_ANY,
+  REGEX_NAME,
 };

@@ -117,4 +117,11 @@ $height-preview: 200px;
   position: absolute;
   color: $color-danger;
   font-size: 0.8rem;
+
+  &_upload {
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
+

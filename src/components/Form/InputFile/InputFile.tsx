@@ -5,14 +5,25 @@ import styles from '../Form.module.scss';
 
 interface IInputFileProps {
   name: string;
-  src: (str: string) => void;
+  src: (imgUrl: string) => void;
 }
+
+const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+const fileTypeErrorMessage = 'Only JPG and PNG files are allowed';
 
 const InputFile = ({ name, src }: IInputFileProps) => {
   const {
     register,
+    clearErrors,
     formState: { errors },
   } = useFormContext();
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      clearErrors(name);
+      src(URL.createObjectURL(event.target.files[0]));
+    }
+  };
 
   return (
     <>
@@ -27,13 +38,14 @@ const InputFile = ({ name, src }: IInputFileProps) => {
         id={name}
         {...register(name, {
           required: ERROR_MESSAGE.REQUIRED,
+          validate: (value) => allowedExtensions.test(value[0].name),
         })}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          if (event.target.files) {
-            src(URL.createObjectURL(event.target.files[0]));
-          }
-        }}
+        onChange={handleImageChange}
       ></input>
+      <div className={css(styles.error, styles.error_upload)}>
+        {errors[name] && errors[name]?.type === 'required' && ERROR_MESSAGE.REQUIRED}
+        {errors[name] && errors[name]?.type === 'validate' && fileTypeErrorMessage}
+      </div>
     </>
   );
 };

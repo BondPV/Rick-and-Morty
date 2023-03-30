@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form';
-import { ERROR_MESSAGE } from '../../../constants/Constants';
+import { ERROR_MESSAGE, REGEX_ANY } from '../../../constants/Constants';
 import styles from '../Form.module.scss';
 
 interface IInputValueProps {
@@ -7,11 +7,11 @@ interface IInputValueProps {
   name: string;
   type: 'text' | 'date' | 'checkbox';
   placeholder?: string;
-  minLength?: number;
   maxLength?: number;
+  regexp?: RegExp;
 }
 
-const InputValue = ({ title, name, type, placeholder, minLength, maxLength }: IInputValueProps) => {
+const InputValue = ({ title, name, type, placeholder, maxLength, regexp }: IInputValueProps) => {
   const {
     register,
     formState: { errors },
@@ -28,9 +28,9 @@ const InputValue = ({ title, name, type, placeholder, minLength, maxLength }: II
           maxLength={maxLength}
           {...register(name, {
             required: ERROR_MESSAGE.REQUIRED,
-            minLength: {
-              value: minLength || 0,
-              message: `Field must contain at least ${minLength} characters`,
+            pattern: {
+              value: regexp || REGEX_ANY,
+              message: 'Minimum 3 characters, maximum 3 words, first letter of each in uppercase',
             },
           })}
         />
