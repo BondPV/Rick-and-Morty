@@ -1,0 +1,17 @@
+.nav {
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  &__link {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: black;
+
+    &_active{
+        color: white;
+      }
+  }
+}
