@@ -30,7 +30,9 @@ const ERROR_MESSAGE = {
 };
 
 const REGEX_ANY = /^.*$/;
-const REGEX_NAME = /^(?:[A-ZА-ЯЁ][a-zа-яё]*\s){0,2}[A-ZА-ЯЁ][a-zа-яё]*$/;
+const REGEX_NAME =
+  /^(?:[A-ZА-ЯЁ][a-zа-яё]{2,}\s){0,2}[A-ZА-ЯЁ][a-zа-яё]{2,}(?:\s[A-ZА-ЯЁ][a-zа-яё]{2,})?$/;
+const REGEX_NAME_ERROR = 'Minimum 3 characters, maximum 3 words, first letter of each in uppercase';
 
 export {
   GLOBAL_STYLES,
@@ -41,4 +43,5 @@ export {
   ERROR_MESSAGE,
   REGEX_ANY,
   REGEX_NAME,
+  REGEX_NAME_ERROR,
 };

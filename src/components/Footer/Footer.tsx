@@ -1,5 +1,5 @@
-import styles from './Footer.module.scss';
 import { GLOBAL_STYLES } from '../../constants/Constants';
+import styles from './Footer.module.scss';
 import logoRS from './../../assets/rs-school-js.svg';
 
 const Footer = () => (

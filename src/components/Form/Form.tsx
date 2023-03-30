@@ -27,6 +27,7 @@ const Form = ({ card, setIsShowAlert }: IFormProps) => {
   const [imagePreview, setImagePreview] = useState(DEFAULT_IMG.SRC);
   const methods = useForm<IFormInputs>({
     mode: 'onSubmit',
+    reValidateMode: 'onSubmit',
   });
 
   const onSubmit = (data: IFormInputs) => {

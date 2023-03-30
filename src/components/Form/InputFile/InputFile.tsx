@@ -14,14 +14,16 @@ const fileTypeErrorMessage = 'Only JPG and PNG files are allowed';
 const InputFile = ({ name, src }: IInputFileProps) => {
   const {
     register,
-    clearErrors,
     formState: { errors },
   } = useFormContext();
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      clearErrors(name);
-      src(URL.createObjectURL(event.target.files[0]));
+    try {
+      if (event.target.files) {
+        src(URL.createObjectURL(event.target.files[0]));
+      }
+    } catch (error) {
+      alert('file upload error');
     }
   };
 

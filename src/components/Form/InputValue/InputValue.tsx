@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form';
-import { ERROR_MESSAGE, REGEX_ANY } from '../../../constants/Constants';
+import { ERROR_MESSAGE, REGEX_ANY, REGEX_NAME_ERROR } from '../../../constants/Constants';
 import styles from '../Form.module.scss';
 
 interface IInputValueProps {
@@ -30,7 +30,7 @@ const InputValue = ({ title, name, type, placeholder, maxLength, regexp }: IInpu
             required: ERROR_MESSAGE.REQUIRED,
             pattern: {
               value: regexp || REGEX_ANY,
-              message: 'Minimum 3 characters, maximum 3 words, first letter of each in uppercase',
+              message: REGEX_NAME_ERROR,
             },
           })}
         />
