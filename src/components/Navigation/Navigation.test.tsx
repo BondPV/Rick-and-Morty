@@ -5,7 +5,7 @@ import { Navigation } from './Navigation';
 describe('Navigation', () => {
   const title = () => console.log('title');
 
-  test('render navigation component', () => {
+  test('should render navigation component', () => {
     render(
       <BrowserRouter>
         <Navigation currentTitle={title} />

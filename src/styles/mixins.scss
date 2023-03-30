@@ -1,18 +1,17 @@
 @mixin box-shadow {
-  -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2)
+  box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
 }
 
 @mixin button {
-  border: none;
   display: inline-block;
   height: auto;
-  line-height: 2.2rem;
   padding: 0 2rem;
-  text-transform: uppercase;
-  vertical-align: middle;
-  transition: .3s ease-out all;
+  border: none;
   cursor: pointer;
+  line-height: 2.2rem;
+  text-transform: uppercase;
+  transition: .3s ease-out all;
+  vertical-align: middle;
 
   &:hover {
     color: white;

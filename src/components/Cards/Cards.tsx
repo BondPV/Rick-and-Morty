@@ -15,9 +15,9 @@ const Cards = ({ cards }: ICards) => {
         ))}
       </div>
     );
-  } else {
-    return <h3>Nothing found</h3>;
   }
+
+  return <h3>Nothing found</h3>;
 };
 
 export { Cards };

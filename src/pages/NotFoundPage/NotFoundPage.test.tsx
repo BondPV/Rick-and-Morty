@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { NotFoundPage } from './NotFoundPage';
 
 describe('Not found page', () => {
-  test('render not found component', () => {
+  test('should render not found component', () => {
     render(
       <BrowserRouter>
         <NotFoundPage />

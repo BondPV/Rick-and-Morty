@@ -12,10 +12,10 @@ interface IStateNav {
 }
 
 class Navigation extends React.Component<IPropsNav, IStateNav> {
-  setActive = ({ isActive }: { isActive: boolean }) =>
+  private setActive = ({ isActive }: { isActive: boolean }) =>
     isActive ? `${styles.nav__link} ${styles.nav__link_active}` : `${styles.nav__link}`;
 
-  render() {
+  public render() {
     return (
       <nav className={styles.nav}>
         <NavLink
@@ -26,6 +26,15 @@ class Navigation extends React.Component<IPropsNav, IStateNav> {
           }}
         >
           Main
+        </NavLink>
+        <NavLink
+          to="/form"
+          className={this.setActive}
+          onClick={() => {
+            this.props.currentTitle(TITLE.FORM);
+          }}
+        >
+          Form
         </NavLink>
         <NavLink
           to="/about"

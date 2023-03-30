@@ -7,13 +7,13 @@ describe('CardsList component', () => {
   const cards: ICard[] = database.results;
   const notCards = undefined;
 
-  test('renders list of cards', () => {
+  test('should renders list of cards', () => {
     render(<Cards cards={cards} />);
 
     expect(cards.length).toBe(8);
   });
 
-  test('renders not cars of list', () => {
+  test('should renders not cars of list', () => {
     render(<Cards cards={notCards} />);
 
     expect(screen.getByText('Nothing found')).toBeInTheDocument();
