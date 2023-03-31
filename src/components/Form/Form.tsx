@@ -16,7 +16,7 @@ interface IFormProps {
 interface IFormInputs {
   title: string;
   name: string;
-  status: string;
+  status: boolean;
   gender: string;
   location: string;
   created: string;
@@ -31,10 +31,13 @@ const Form = ({ card, setIsShowAlert }: IFormProps) => {
   });
 
   const onSubmit = (data: IFormInputs) => {
+    const status = data.status ? 'alive' : 'dead';
+
     const newCard: IFormCard = {
       id: new Date().getTime(),
       ...data,
       image: imagePreview,
+      status: status,
     };
 
     card(newCard);
@@ -59,7 +62,7 @@ const Form = ({ card, setIsShowAlert }: IFormProps) => {
             <InputSelect title="Location" name="location" options={LOCATIONS} />
             <InputValue title="Created" name="created" type="date" />
             <InputRadio title="Gender" name="gender" elements={GENDER} />
-            <InputValue title="The person is alive?" name="alive" type="checkbox" />
+            <InputValue title="The person is alive?" name="status" type="checkbox" />
           </div>
           <div className={styles.form__preview}>
             <InputFile name="image" src={setImagePreview} />
