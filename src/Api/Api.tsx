@@ -1,4 +1,4 @@
-import { ICard } from '../types/interfaces';
+import { ICard, ISearchParams } from '../types/interfaces';
 
 interface IResponseInfo {
   count: number;
@@ -14,12 +14,16 @@ interface IResponseCharacters {
 
 const API_URL = 'https://rickandmortyapi.com/api/character';
 
-const getAllCharacters = async (): Promise<ICard[] | null> => {
+const getCharacters = async (params: ISearchParams): Promise<ICard[] | null> => {
+  const queryString = Object.entries(params)
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&');
+
   try {
-    const response = await fetch(API_URL);
+    const response = await fetch(`${API_URL}?${queryString}`);
 
     if (!response.ok) {
-      return null;
+      return [];
     }
 
     const data: IResponseCharacters = await response.json();
@@ -29,4 +33,4 @@ const getAllCharacters = async (): Promise<ICard[] | null> => {
   }
 };
 
-export { getAllCharacters };
+export { getCharacters };

@@ -3,7 +3,7 @@ import { getStorage, setStorage, StorageKey } from '../../utils/localStorage';
 import styles from './Search.module.scss';
 
 interface ISearchProps {
-  searchCards: (str: string) => void;
+  searchCards: (value: string) => void;
 }
 
 const Search = ({ searchCards }: ISearchProps) => {
