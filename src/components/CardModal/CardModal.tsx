@@ -7,11 +7,11 @@ interface ICardModalProps {
   handleCardModalShow: () => void;
 }
 
-const CardModal = ({ card, handleCardModalShow }: ICardModalProps) => {
+const CardModal = ({ card, handleCardModalShow }: ICardModalProps): JSX.Element => {
   const { id, name, gender, image, species, status, episode, location, created }: ICard = card;
   const [createdDate] = created.split('T');
 
-  const notClick = (e: React.MouseEvent) => e.stopPropagation();
+  const notClick = (e: React.MouseEvent): void => e.stopPropagation();
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';

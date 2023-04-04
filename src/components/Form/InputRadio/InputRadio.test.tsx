@@ -6,7 +6,7 @@ describe('InputRadioButtons', () => {
   const testElements = ['test1', 'test2'];
 
   test('should render radio button component', () => {
-    const TestInputRadio = () => {
+    const TestInputRadio = (): JSX.Element => {
       const methods = useForm();
       return (
         <FormProvider {...methods}>

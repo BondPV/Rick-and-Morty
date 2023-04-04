@@ -3,11 +3,11 @@ import { ICard } from '../../types/interfaces';
 import { CardModal } from '../CardModal/CardModal';
 import styles from './Card.module.scss';
 
-const Card = (card: ICard) => {
+const Card = (card: ICard): JSX.Element => {
   const { id, name, image }: ICard = card;
   const [isCardModalShow, setCardModalShow] = useState(false);
 
-  const handleCardModalShow = () => setCardModalShow(!isCardModalShow);
+  const handleCardModalShow = (): void => setCardModalShow(!isCardModalShow);
 
   return (
     <>

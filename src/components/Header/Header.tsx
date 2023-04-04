@@ -3,10 +3,10 @@ import { GLOBAL_STYLES, ROUTE_LINKS } from '../../constants/Constants';
 import { Navigation } from '../Navigation/Navigation';
 import styles from './Header.module.scss';
 
-const Header = () => {
+const Header = (): JSX.Element => {
   const pathname = useLocation().pathname;
 
-  const setTitle = (pathname: string) => {
+  const setTitle = (pathname: string): string => {
     const [MAIN] = ROUTE_LINKS;
     const currentTitle = ROUTE_LINKS.find((route) => route.PATH === pathname)?.TITLE;
 

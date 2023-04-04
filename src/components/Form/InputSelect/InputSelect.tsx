@@ -8,7 +8,7 @@ interface IInputSelectProps {
   options: string[];
 }
 
-const InputSelect = ({ title, name, options }: IInputSelectProps) => {
+const InputSelect = ({ title, name, options }: IInputSelectProps): JSX.Element => {
   const {
     register,
     formState: { errors },

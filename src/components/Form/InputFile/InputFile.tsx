@@ -11,13 +11,13 @@ interface IInputFileProps {
 const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
 const fileTypeErrorMessage = 'Only JPG and PNG files are allowed';
 
-const InputFile = ({ name, src }: IInputFileProps) => {
+const InputFile = ({ name, src }: IInputFileProps): JSX.Element => {
   const {
     register,
     formState: { errors },
   } = useFormContext();
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     try {
       if (event.target.files) {
         src(URL.createObjectURL(event.target.files[0]));

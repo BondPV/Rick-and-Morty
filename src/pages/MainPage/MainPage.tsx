@@ -7,22 +7,13 @@ import { getStorage, StorageKey } from '../../utils/localStorage';
 import { Preloader } from '../../components/Preloader/Preloader';
 import { getCharacters } from '../../Api/Api';
 
-const MainPage = () => {
+const MainPage = (): JSX.Element => {
   const [cards, setCards] = useState<ICard[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchParams, setSearchParams] = useState<ISearchParams>({
     name: getStorage(StorageKey.search) || '',
     page: 1,
   });
-
-  // const searchForDatabase = async (params: ISearchParams): Promise<void> => {
-  //   const findCards = await getCharacters(searchParams);
-
-  //   if (findCards) {
-  //     setLoading(false);
-  //     setCards(findCards);
-  //   }
-  // };
 
   const filterCards = async (params: ISearchParams): Promise<void> => {
     const filteredCards = await getCharacters(params);
@@ -33,11 +24,9 @@ const MainPage = () => {
     }
   };
 
-  const searchCards = (value: string) => setSearchParams({ ...searchParams, name: value });
+  const searchCards = (value: string): void => setSearchParams({ ...searchParams, name: value });
 
   useEffect(() => {
-    // const search = getStorage(StorageKey.search) || '';
-    // setSearchParams({ ...searchParams, name: search });
     filterCards(searchParams);
   }, [searchParams]);
 

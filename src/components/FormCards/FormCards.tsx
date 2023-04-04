@@ -6,7 +6,7 @@ interface IFormCards {
   cards?: IFormCard[];
 }
 
-const FormCards = ({ cards }: IFormCards) => {
+const FormCards = ({ cards }: IFormCards): JSX.Element => {
   if (cards?.length) {
     return (
       <div className={styles.cards}>

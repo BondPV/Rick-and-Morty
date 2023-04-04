@@ -5,7 +5,7 @@ import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { Layout } from './Layout/Layout';
 import { FormPage } from './pages/FormPage/FormPage';
 
-const App = () => (
+const App = (): JSX.Element => (
   <Routes>
     <Route path="/" element={<Layout />}>
       <Route index element={<MainPage />} />

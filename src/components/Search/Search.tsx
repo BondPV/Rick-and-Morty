@@ -6,7 +6,7 @@ interface ISearchProps {
   searchCards: (value: string) => void;
 }
 
-const Search = ({ searchCards }: ISearchProps) => {
+const Search = ({ searchCards }: ISearchProps): JSX.Element => {
   const [search, setSearch] = useState(() => getStorage(StorageKey.search) || '');
   const inputRef = useRef(search);
 
@@ -14,10 +14,9 @@ const Search = ({ searchCards }: ISearchProps) => {
     setSearch(event.target.value);
   };
 
-  const handleKey = (event: React.KeyboardEvent<HTMLElement>): void => {
-    if (event.key === 'Enter') {
-      searchCards(search);
-    }
+  const handleSearchSubmit = (event: React.FormEvent): void => {
+    event.preventDefault();
+    searchCards(search);
   };
 
   useEffect(() => {
@@ -31,19 +30,16 @@ const Search = ({ searchCards }: ISearchProps) => {
   }, []);
 
   return (
-    <div className={styles.search}>
+    <form className={styles.search} onSubmit={handleSearchSubmit}>
       <input
         className={styles.search__input}
         type="search"
         placeholder="search"
         value={search}
         onChange={searchInputChange}
-        onKeyDown={handleKey}
       />
-      <button className={styles.search__btn} onClick={() => searchCards(search)}>
-        Search
-      </button>
-    </div>
+      <button className={styles.search__btn}>Search</button>
+    </form>
   );
 };
 

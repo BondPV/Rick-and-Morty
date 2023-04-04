@@ -6,7 +6,7 @@ describe('InputSelect', () => {
   const list = ['test-value-1', 'test-value-2', 'test-value-3'];
 
   test('should render select component', () => {
-    const TestInputSelect = () => {
+    const TestInputSelect = (): JSX.Element => {
       const methods = useForm();
       return (
         <FormProvider {...methods}>

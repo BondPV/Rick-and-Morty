@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { GLOBAL_STYLES } from '../../constants/Constants';
 import styles from './NotFoundPage.module.scss';
 
-const NotFoundPage = () => (
+const NotFoundPage = (): JSX.Element => (
   <div className={GLOBAL_STYLES.CONTAINER}>
     <div className={styles.wrapper}>
       <div className={styles['not-found']}>

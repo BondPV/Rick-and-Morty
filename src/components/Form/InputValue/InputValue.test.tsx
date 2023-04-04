@@ -4,7 +4,7 @@ import { InputValue } from './InputValue';
 
 describe('InputValue', () => {
   test('should render input value component', () => {
-    const TestInputValue = () => {
+    const TestInputValue = (): JSX.Element => {
       const methods = useForm();
       return (
         <FormProvider {...methods}>

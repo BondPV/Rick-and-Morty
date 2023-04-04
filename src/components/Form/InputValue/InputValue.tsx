@@ -11,7 +11,14 @@ interface IInputValueProps {
   regexp?: RegExp;
 }
 
-const InputValue = ({ title, name, type, placeholder, maxLength, regexp }: IInputValueProps) => {
+const InputValue = ({
+  title,
+  name,
+  type,
+  placeholder,
+  maxLength,
+  regexp,
+}: IInputValueProps): JSX.Element => {
   const {
     register,
     formState: { errors },

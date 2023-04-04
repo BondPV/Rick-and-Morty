@@ -3,7 +3,7 @@ import { Alert } from './Alert';
 
 describe('Alert message', () => {
   test('should render Alert component', () => {
-    render(<Alert message="Alert message" isShow={true} setIsShow={() => {}} />);
+    render(<Alert message="Alert message" isShow={true} setIsShow={(): void => {}} />);
 
     expect(screen.getByText('Alert message')).toBeInTheDocument();
   });
