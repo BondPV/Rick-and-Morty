@@ -1,30 +1,23 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { InputRadio } from './InputRadio';
+import { FormProvider, useForm } from 'react-hook-form';
 
 describe('InputRadioButtons', () => {
-  const inputRadio = {
-    title: 'test title',
-    labels: ['male', 'female'],
-  };
-
-  const [refMale, refFemale] = [
-    React.createRef<HTMLInputElement>(),
-    React.createRef<HTMLInputElement>(),
-  ];
+  const testElements = ['test1', 'test2'];
 
   test('should render radio button component', () => {
-    render(
-      <InputRadio
-        title={inputRadio.title}
-        elements={[
-          { value: 'male', forwardedRef: refMale },
-          { value: 'female', forwardedRef: refFemale },
-        ]}
-      />
-    );
+    const TestInputRadio = () => {
+      const methods = useForm();
+      return (
+        <FormProvider {...methods}>
+          <InputRadio title="Test title" name="test" elements={testElements} />
+        </FormProvider>
+      );
+    };
 
-    expect(screen.getByText(inputRadio.title)).toBeInTheDocument();
-    expect(screen.getByText(inputRadio.labels[0])).toBeInTheDocument();
+    render(<TestInputRadio />);
+
+    expect(screen.getByText('Test title')).toBeInTheDocument();
+    expect(screen.getByText(testElements[0])).toBeInTheDocument();
   });
 });

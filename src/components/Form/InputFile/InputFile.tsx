@@ -1,31 +1,55 @@
 import css from 'classnames';
+import { useFormContext } from 'react-hook-form';
+import { ERROR_MESSAGE } from '../../../constants/Constants';
 import styles from '../Form.module.scss';
 
 interface IInputFileProps {
   name: string;
-  error?: string;
-  src: (str: string) => void;
-  forwardedRef: React.RefObject<HTMLInputElement>;
+  src: (imgUrl: string) => void;
 }
 
-const InputFile = ({ name, error, src, forwardedRef }: IInputFileProps) => (
-  <>
-    <label
-      className={css(styles.form__label, error && styles.form__label_error)}
-      htmlFor={name}
-    ></label>
-    <input
-      type="file"
-      id={name}
-      name={name}
-      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files) {
-          src(URL.createObjectURL(event.target.files[0]));
+const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+const fileTypeErrorMessage = 'Only JPG and PNG files are allowed';
+
+const InputFile = ({ name, src }: IInputFileProps) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      if (event.target.files) {
+        src(URL.createObjectURL(event.target.files[0]));
+      }
+    } catch (error) {
+      alert('file upload error');
+    }
+  };
+
+  return (
+    <>
+      <label
+        className={
+          !errors[name] ? styles.form__label : css(styles.form__label, styles.form__label_error)
         }
-      }}
-      ref={forwardedRef}
-    ></input>
-  </>
-);
+        htmlFor={name}
+      ></label>
+      <input
+        type="file"
+        id={name}
+        {...register(name, {
+          required: ERROR_MESSAGE.REQUIRED,
+          validate: (value) => allowedExtensions.test(value[0].name),
+        })}
+        onChange={handleImageChange}
+      ></input>
+      <div className={css(styles.error, styles.error_upload)}>
+        {errors[name] && errors[name]?.type === 'required' && ERROR_MESSAGE.REQUIRED}
+        {errors[name] && errors[name]?.type === 'validate' && fileTypeErrorMessage}
+      </div>
+    </>
+  );
+};
 
 export { InputFile };
