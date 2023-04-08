@@ -3,8 +3,7 @@ import { ICard } from '../../types/interfaces';
 import { CardModal } from '../CardModal/CardModal';
 import styles from './Card.module.scss';
 
-const Card = (card: ICard): JSX.Element => {
-  const { id, name, image }: ICard = card;
+const Card = ({ id, name, image }: ICard): JSX.Element => {
   const [isCardModalShow, setCardModalShow] = useState(false);
 
   const handleCardModalShow = (): void => setCardModalShow(!isCardModalShow);
@@ -17,7 +16,7 @@ const Card = (card: ICard): JSX.Element => {
         </div>
         <div className={styles.card__description}>{name}</div>
       </div>
-      {isCardModalShow ? <CardModal card={card} handleCardModalShow={handleCardModalShow} /> : ''}
+      {isCardModalShow ? <CardModal id={id} handleCardModalShow={handleCardModalShow} /> : ''}
     </>
   );
 };
