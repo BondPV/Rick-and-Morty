@@ -14,13 +14,17 @@ interface IResponseCharacters {
 
 const API_URL = 'https://rickandmortyapi.com/api/character';
 
-const getCharacters = async (params: ISearchParams): Promise<ICard[]> => {
+const getCharacters = async (params: ISearchParams): Promise<ICard[] | null> => {
   const queryString = Object.entries(params)
     .map(([key, value]) => `${key}=${value}`)
     .join('&');
 
   try {
     const response = await fetch(`${API_URL}?${queryString}`);
+
+    if (response.status === 404) {
+      return [];
+    }
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -29,7 +33,7 @@ const getCharacters = async (params: ISearchParams): Promise<ICard[]> => {
     const data: IResponseCharacters = await response.json();
     return data.results;
   } catch (error) {
-    return [];
+    return null;
   }
 };
 
