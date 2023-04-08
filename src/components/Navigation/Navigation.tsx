@@ -1,53 +1,29 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { TITLE } from '../../constants/Constants';
+import css from 'classnames';
+import { ROUTE_LINKS } from '../../constants/Constants';
 import styles from './Navigation.module.scss';
 
-interface IPropsNav {
-  currentTitle: (str: string) => void;
-}
+const Navigation = () => {
+  const setActive = ({ isActive }: { isActive: boolean }): string =>
+    isActive ? `${css(styles.nav__link, styles.nav__link_active)}` : `${styles.nav__link}`;
 
-interface IStateNav {
-  title?: string;
-}
+  const [MAIN, FORM, ABOUT] = ROUTE_LINKS;
 
-class Navigation extends React.Component<IPropsNav, IStateNav> {
-  private setActive = ({ isActive }: { isActive: boolean }) =>
-    isActive ? `${styles.nav__link} ${styles.nav__link_active}` : `${styles.nav__link}`;
+  return (
+    <nav className={styles.nav}>
+      <NavLink to={MAIN.PATH} className={setActive}>
+        {MAIN.LINK}
+      </NavLink>
 
-  public render() {
-    return (
-      <nav className={styles.nav}>
-        <NavLink
-          to="/"
-          className={this.setActive}
-          onClick={() => {
-            this.props.currentTitle(TITLE.MAIN);
-          }}
-        >
-          Main
-        </NavLink>
-        <NavLink
-          to="/form"
-          className={this.setActive}
-          onClick={() => {
-            this.props.currentTitle(TITLE.FORM);
-          }}
-        >
-          Form
-        </NavLink>
-        <NavLink
-          to="/about"
-          className={this.setActive}
-          onClick={() => {
-            this.props.currentTitle(TITLE.ABOUT);
-          }}
-        >
-          About
-        </NavLink>
-      </nav>
-    );
-  }
-}
+      <NavLink to={FORM.PATH} className={setActive}>
+        {FORM.LINK}
+      </NavLink>
+
+      <NavLink to={ABOUT.PATH} className={setActive}>
+        {ABOUT.LINK}
+      </NavLink>
+    </nav>
+  );
+};
 
 export { Navigation };

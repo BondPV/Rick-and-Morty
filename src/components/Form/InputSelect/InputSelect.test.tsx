@@ -1,15 +1,22 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { InputSelect } from './InputSelect';
+import { FormProvider, useForm } from 'react-hook-form';
 
 describe('InputSelect', () => {
   const list = ['test-value-1', 'test-value-2', 'test-value-3'];
-  const forwardedRef = React.createRef<HTMLSelectElement>();
 
   test('should render select component', () => {
-    render(
-      <InputSelect title="Test title" name="test" options={list} forwardedRef={forwardedRef} />
-    );
+    const TestInputSelect = () => {
+      const methods = useForm();
+      return (
+        <FormProvider {...methods}>
+          <InputSelect title="Test title" name="test" options={list} />
+        </FormProvider>
+      );
+    };
+
+    render(<TestInputSelect />);
+
     const options = screen.getAllByRole('option');
 
     expect(screen.getByText('Test title')).toBeInTheDocument();

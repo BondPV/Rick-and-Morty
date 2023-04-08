@@ -1,22 +1,41 @@
-import css from 'classnames';
-import { IInputSelectProps } from '../../../types/interfaces';
+import { useFormContext } from 'react-hook-form';
+import { ERROR_MESSAGE } from '../../../constants/Constants';
 import styles from '../Form.module.scss';
 
-const InputSelect = ({ title, name, forwardedRef, options, error }: IInputSelectProps) => (
-  <div>
-    <div className={styles.form__row}>
-      <div>{title}</div>
-      <select name={name} ref={forwardedRef}>
-        <option defaultValue="default" hidden></option>
-        {options?.map((elem) => (
-          <option key={elem} value={elem}>
-            {elem}
-          </option>
-        ))}
-      </select>
+interface IInputSelectProps {
+  title: string;
+  name: string;
+  options: string[];
+}
+
+const InputSelect = ({ title, name, options }: IInputSelectProps) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  return (
+    <div>
+      <div className={styles.form__row}>
+        <div>{title}</div>
+        <select
+          {...register(name, {
+            required: ERROR_MESSAGE.REQUIRED,
+          })}
+        >
+          <option defaultValue="default" hidden></option>
+          {options?.map((elem) => (
+            <option key={elem} value={elem}>
+              {elem}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className={styles.error}>
+        {errors[name] && `${errors[name]?.message || ERROR_MESSAGE.DEFAULT}`}
+      </div>
     </div>
-    <div className={css(styles.error, !error && styles.hide)}>{error}</div>
-  </div>
-);
+  );
+};
 
 export { InputSelect };

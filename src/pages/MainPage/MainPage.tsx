@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { Search } from '../../components/Search/Search';
 import { Cards } from '../../components/Cards/Cards';
 import { ICard } from '../../types/interfaces';
@@ -6,30 +6,27 @@ import { GLOBAL_STYLES } from '../../constants/Constants';
 import database from '../../database/source.json';
 import { getStorage, StorageKey } from '../../utils/localStorage';
 
-class MainPage extends React.Component<{}, { cards?: ICard[] }> {
-  public state = {
-    cards: [],
-  };
+const MainPage = () => {
+  const [cards, setCards] = useState<ICard[]>([]);
 
-  public componentDidMount() {
-    this.searchForDatabase(getStorage(StorageKey.search) || '');
-  }
-
-  private searchForDatabase = (str: string) => {
+  const searchForDatabase = (str: string): void => {
     const findCards = database.results.filter((card) =>
       card.name.toLowerCase().includes(str.toLowerCase())
     );
-    this.setState({ cards: findCards });
+
+    setCards(findCards);
   };
 
-  public render() {
-    return (
-      <div className={GLOBAL_STYLES.CONTAINER}>
-        <Search searchCards={this.searchForDatabase} />
-        <Cards cards={this.state.cards} />
-      </div>
-    );
-  }
-}
+  useEffect(() => {
+    searchForDatabase(getStorage(StorageKey.search) || '');
+  }, []);
+
+  return (
+    <div className={GLOBAL_STYLES.CONTAINER}>
+      <Search searchCards={searchForDatabase} />
+      <Cards cards={cards} />
+    </div>
+  );
+};
 
 export { MainPage };

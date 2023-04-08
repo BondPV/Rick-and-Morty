@@ -1,22 +1,44 @@
-import css from 'classnames';
-import { IInputRadioProps } from '../../../types/interfaces';
+import { useFormContext } from 'react-hook-form';
+import { ERROR_MESSAGE } from '../../../constants/Constants';
 import styles from '../Form.module.scss';
 
-const InputRadio = ({ title, name, elements, error }: IInputRadioProps) => (
-  <div>
-    <div className={styles.form__row}>
-      <div>{title}</div>
-      <div className={styles.form__radio}>
-        {elements.map((el) => (
-          <div key={el.value}>
-            <input type="radio" name={name} id={el.value} value={el.value} ref={el.forwardedRef} />
-            <label htmlFor={el.value}>{el.value}</label>
-          </div>
-        ))}
+interface IInputRadioProps {
+  title: string;
+  name: string;
+  elements: string[];
+}
+
+const InputRadio = ({ title, name, elements }: IInputRadioProps) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  return (
+    <div>
+      <div className={styles.form__row}>
+        <div>{title}</div>
+        <div className={styles.form__radio}>
+          {elements.map((element) => (
+            <div key={element}>
+              <input
+                type="radio"
+                id={element}
+                value={element}
+                {...register(name, {
+                  required: ERROR_MESSAGE.REQUIRED,
+                })}
+              />
+              <label htmlFor={element}>{element}</label>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className={styles.error}>
+        {errors[name] && `${errors[name]?.message || ERROR_MESSAGE.DEFAULT}`}
       </div>
     </div>
-    <div className={css(styles.error, !error && styles.hide)}>{error}</div>
-  </div>
-);
+  );
+};
 
 export { InputRadio };
