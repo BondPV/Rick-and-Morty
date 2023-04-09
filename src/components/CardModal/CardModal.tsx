@@ -43,7 +43,7 @@ const CardModal = ({ id, handleCardModalShow }: ICardModalProps): JSX.Element =>
   return (
     <div className={styles.modal} onClick={handleCardModalShow}>
       <div id={`${id}`} className={styles.card} onClick={notClick}>
-        <span className={styles.close_btn} onClick={handleCardModalShow}>
+        <span className={styles.close_btn} onClick={handleCardModalShow} data-testid="close">
           &times;
         </span>
 
