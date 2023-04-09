@@ -22,7 +22,7 @@ describe('Api function getCharacters', () => {
     expect(characters).toEqual(mockResponse.results);
   });
 
-  it('should return an empty array if the response status is 404', async () => {
+  test('should return an empty array if the response status is 404', async () => {
     server.use(
       rest.get(`https://rickandmortyapi.com/api/character`, (req, res, ctx) => {
         return res(ctx.status(404));
@@ -33,7 +33,7 @@ describe('Api function getCharacters', () => {
     expect(characters).toEqual([]);
   });
 
-  it('should return null if there is an error', async () => {
+  test('should return null if there is an error', async () => {
     server.use(
       rest.get(`https://rickandmortyapi.com/api/character`, (req, res, ctx) => {
         return res(ctx.status(500));
@@ -65,7 +65,7 @@ describe('Api function getCharacter', () => {
     expect(character).toEqual(response);
   });
 
-  it('should return null if there is an error', async () => {
+  test('should return null if there is an error', async () => {
     server.use(
       rest.get(`https://rickandmortyapi.com/api/character/${id}`, (req, res, ctx) => {
         return res(ctx.status(500));
