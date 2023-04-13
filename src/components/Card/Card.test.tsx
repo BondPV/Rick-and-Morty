@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react';
 import { Card } from './Card';
 import { ICard } from '../../types/interfaces';
-import database from '../../Api/mockSource.json';
+import database from '../../mocks/source.json';
 
 describe('Card render', () => {
   const card: ICard = database.results[0];

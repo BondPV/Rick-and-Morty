@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { getCharacters, getCharacter } from './Api';
-import mockResponse from './mockSource.json';
+import mockResponse from '../mocks/source.json';
 
 describe('Api function getCharacters', () => {
   const params = { page: 1, name: '' };

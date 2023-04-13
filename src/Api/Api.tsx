@@ -15,9 +15,7 @@ interface IResponseCharacters {
 const API_URL = 'https://rickandmortyapi.com/api/character';
 
 const getCharacters = async (params: ISearchParams): Promise<ICard[] | null> => {
-  const queryString = Object.entries(params)
-    .map(([key, value]) => `${key}=${value}`)
-    .join('&');
+  const queryString = new URLSearchParams(params as unknown as URLSearchParams).toString();
 
   try {
     const response = await fetch(`${API_URL}?${queryString}`);

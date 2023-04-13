@@ -34,7 +34,7 @@ const CardModal = ({ id, handleCardModalShow }: ICardModalProps): JSX.Element =>
 
   const [createdDate] = card.created?.split('T') || '';
 
-  const notClick = (e: React.MouseEvent): void => e.stopPropagation();
+  const handleClick = (e: React.MouseEvent): void => e.stopPropagation();
 
   useEffect(() => {
     getCardInfo(id);
@@ -42,7 +42,7 @@ const CardModal = ({ id, handleCardModalShow }: ICardModalProps): JSX.Element =>
 
   return (
     <div className={styles.modal} onClick={handleCardModalShow}>
-      <div id={`${id}`} className={styles.card} onClick={notClick}>
+      <div id={`${id}`} className={styles.card} onClick={handleClick}>
         <span className={styles.close_btn} onClick={handleCardModalShow} data-testid="close">
           &times;
         </span>

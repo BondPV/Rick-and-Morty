@@ -16,7 +16,7 @@ const Card = ({ id, name, image }: ICard): JSX.Element => {
         </div>
         <div className={styles.card__description}>{name}</div>
       </div>
-      {isCardModalShow ? <CardModal id={id} handleCardModalShow={handleCardModalShow} /> : ''}
+      {isCardModalShow && <CardModal id={id} handleCardModalShow={handleCardModalShow} />}
     </>
   );
 };
