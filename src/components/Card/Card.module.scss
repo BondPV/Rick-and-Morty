@@ -4,12 +4,7 @@
 .card {
   @include box-shadow;
 
-  &__title {
-    border-bottom: 2px solid $main-color;
-    margin: 0.5rem 0;
-    font-size: 1.2rem;
-    text-align: center;
-  }
+  cursor: pointer;
 
   &__img-wrap {
     overflow: hidden;
@@ -19,31 +14,26 @@
 
   &__img {
     width: 100%;
+    transition: 0.3s;
+
+    &:hover {
+      width: 105%;
+    }
   }
 
   &__description {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem;
-    gap: 0.3rem;
-  }
-
-  &__episode {
-    display: flex;
-    width: 6rem;
-    height: 6rem;
-    flex-direction: column;
-    flex-shrink: 0;
+    height: 2rem;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
-    border-radius: 50%;
-    background-color: $main-color;
+    padding: 0.5rem;
+    margin: 1rem 0;
+    font-size: 1.2rem;
     text-align: center;
-  }
+    transition: 0.3s;
 
-  &__count {
-    font-size: 2rem;
+    &:hover {
+      font-size: 1.3rem;
+    }
   }
 }

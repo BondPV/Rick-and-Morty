@@ -16,6 +16,7 @@ export default defineConfig({
       reporter: ['text'],
       all: true,
       include: ['src/**/*.tsx'],
+      exclude: ['src/main.tsx'],
     },
   },
 });

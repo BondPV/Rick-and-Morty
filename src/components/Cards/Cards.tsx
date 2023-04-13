@@ -6,7 +6,7 @@ interface ICards {
   cards?: ICard[];
 }
 
-const Cards = ({ cards }: ICards) => {
+const Cards = ({ cards }: ICards): JSX.Element => {
   if (cards?.length) {
     return (
       <div className={styles.cards}>

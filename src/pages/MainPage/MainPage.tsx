@@ -1,30 +1,46 @@
 import { useState, useEffect } from 'react';
 import { Search } from '../../components/Search/Search';
 import { Cards } from '../../components/Cards/Cards';
-import { ICard } from '../../types/interfaces';
+import { ICard, ISearchParams } from '../../types/interfaces';
 import { GLOBAL_STYLES } from '../../constants/Constants';
-import database from '../../database/source.json';
 import { getStorage, StorageKey } from '../../utils/localStorage';
+import { Preloader } from '../../components/Preloader/Preloader';
+import { getCharacters } from '../../Api/Api';
+import styles from './MainPage.module.scss';
 
-const MainPage = () => {
+const MainPage = (): JSX.Element => {
   const [cards, setCards] = useState<ICard[]>([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [searchParams, setSearchParams] = useState<ISearchParams>({
+    name: getStorage(StorageKey.search) || '',
+    page: 1,
+  });
 
-  const searchForDatabase = (str: string): void => {
-    const findCards = database.results.filter((card) =>
-      card.name.toLowerCase().includes(str.toLowerCase())
-    );
+  const filterCards = async (params: ISearchParams): Promise<void> => {
+    const filteredCards = await getCharacters(params);
 
-    setCards(findCards);
+    if (filteredCards) {
+      setLoading(false);
+      setError(false);
+      setCards(filteredCards);
+    } else {
+      setError(true);
+    }
   };
 
+  const searchCards = (value: string): void => setSearchParams({ ...searchParams, name: value });
+
   useEffect(() => {
-    searchForDatabase(getStorage(StorageKey.search) || '');
-  }, []);
+    setLoading(true);
+    filterCards(searchParams);
+  }, [searchParams]);
 
   return (
     <div className={GLOBAL_STYLES.CONTAINER}>
-      <Search searchCards={searchForDatabase} />
-      <Cards cards={cards} />
+      <Search searchCards={searchCards} />
+      {loading ? <Preloader /> : <Cards cards={cards} />}
+      {error && <div className={styles.error}>Something went wrong. Please try again later</div>}
     </div>
   );
 };

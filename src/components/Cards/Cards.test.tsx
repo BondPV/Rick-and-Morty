@@ -1,6 +1,6 @@
 import { screen, render } from '@testing-library/react';
 import { Cards } from './Cards';
-import database from '../../database/source.json';
+import database from '../../mocks/source.json';
 import { ICard } from '../../types/interfaces';
 
 describe('CardsList component', () => {

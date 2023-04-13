@@ -1,7 +1,15 @@
 import { IFormCard } from '../../types/interfaces';
 import styles from './FormCard.module.scss';
 
-const FormCard = ({ id, name, status, gender, location, image, created }: IFormCard) => (
+const FormCard = ({
+  id,
+  name,
+  status,
+  gender,
+  location,
+  image,
+  created,
+}: IFormCard): JSX.Element => (
   <div id={`${id}`} className={styles.card}>
     <div className={styles['card__img-wrap']}>
       <img src={image} alt={name} className={styles.card__img} />

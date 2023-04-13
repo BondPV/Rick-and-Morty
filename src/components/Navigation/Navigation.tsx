@@ -3,7 +3,7 @@ import css from 'classnames';
 import { ROUTE_LINKS } from '../../constants/Constants';
 import styles from './Navigation.module.scss';
 
-const Navigation = () => {
+const Navigation = (): JSX.Element => {
   const setActive = ({ isActive }: { isActive: boolean }): string =>
     isActive ? `${css(styles.nav__link, styles.nav__link_active)}` : `${styles.nav__link}`;
 

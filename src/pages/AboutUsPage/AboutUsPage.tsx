@@ -1,7 +1,7 @@
 import { GLOBAL_STYLES } from '../../constants/Constants';
 import styles from './AboutUsPage.module.scss';
 
-const AboutUsPage = () => (
+const AboutUsPage = (): JSX.Element => (
   <div className={GLOBAL_STYLES.CONTAINER}>
     <div className={styles.about}>
       <p>

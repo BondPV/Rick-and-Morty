@@ -9,8 +9,8 @@ import { InputFile } from './InputFile/InputFile';
 import styles from './Form.module.scss';
 
 interface IFormProps {
-  card: (card: IFormCard) => void;
-  setIsShowAlert: (show: boolean) => void;
+  addCard: (card: IFormCard) => void;
+  handleAlert: (show: boolean) => void;
 }
 
 interface IFormInputs {
@@ -23,14 +23,14 @@ interface IFormInputs {
   image: FileList;
 }
 
-const Form = ({ card, setIsShowAlert }: IFormProps) => {
+const Form = ({ addCard, handleAlert }: IFormProps): JSX.Element => {
   const [imagePreview, setImagePreview] = useState(DEFAULT_IMG.SRC);
   const methods = useForm<IFormInputs>({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
   });
 
-  const onSubmit = (data: IFormInputs) => {
+  const onSubmit = (data: IFormInputs): void => {
     const status = data.status ? 'alive' : 'dead';
 
     const newCard: IFormCard = {
@@ -40,10 +40,10 @@ const Form = ({ card, setIsShowAlert }: IFormProps) => {
       status: status,
     };
 
-    card(newCard);
+    addCard(newCard);
     methods.reset();
     setImagePreview(DEFAULT_IMG.SRC);
-    setIsShowAlert(true);
+    handleAlert(true);
   };
 
   return (

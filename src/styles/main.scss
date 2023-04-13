@@ -16,6 +16,20 @@ main {
   flex-grow: 1;
 }
 
+body {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgb(220 220 220);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #608230;
+  }
+}
+
 .container {
   width: 90%;
   max-width: 1280px;

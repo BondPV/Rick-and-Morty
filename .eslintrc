@@ -25,23 +25,23 @@
     "@typescript-eslint", "react", "prettier", "react-hooks"
   ],
   "rules": {
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "comma-dangle": ["error", "only-multiline"],
-    "react/prop-types": "off",
-    "react/display-name": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/ban-ts-comment": "error",
-    "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/ban-types": ["error", { "types": { "{}": false }}],
+    "@typescript-eslint/explicit-function-return-type": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "error",
+    "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-var-reqiures": "off",
+    "comma-dangle": ["error", "only-multiline"],
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "react/display-name": "off",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
     "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/ban-types": ["error", { "types": { "{}": false }}]
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off"
   },
   "settings": {
     "react": {
