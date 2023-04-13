@@ -7,22 +7,20 @@ import { IFormCard } from '../../types/interfaces';
 
 const alertMessage = 'Card created successfully';
 
-const FormPage = () => {
+const FormPage = (): JSX.Element => {
   const [cards, setCards] = useState<IFormCard[]>([]);
   const [showAlert, setShowAlert] = useState(false);
 
-  const addCard = (card: IFormCard) => {
+  const addCard = (card: IFormCard): void => {
     setCards([...cards, card]);
   };
 
-  const handleAlert = (show: boolean) => {
-    show ? setShowAlert(true) : setShowAlert(false);
-  };
+  const handleAlert = (show: boolean): void => setShowAlert(show);
 
   return (
     <div className={GLOBAL_STYLES.CONTAINER}>
-      <Form card={addCard} setIsShowAlert={handleAlert} />
-      {showAlert ? <Alert message={alertMessage} isShow={showAlert} setIsShow={handleAlert} /> : ''}
+      <Form addCard={addCard} handleAlert={handleAlert} />
+      {showAlert && <Alert message={alertMessage} isShow={showAlert} setIsShow={handleAlert} />}
       <FormCards cards={cards} />
     </div>
   );

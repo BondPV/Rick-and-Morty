@@ -29,4 +29,9 @@ interface IFormCard {
   created: string;
 }
 
-export type { ICard, IFormCard };
+interface ISearchParams {
+  page: number;
+  name: string;
+}
+
+export type { ICard, IFormCard, ISearchParams };

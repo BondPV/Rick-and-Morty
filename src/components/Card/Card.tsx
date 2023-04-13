@@ -1,27 +1,23 @@
+import { useState } from 'react';
 import { ICard } from '../../types/interfaces';
+import { CardModal } from '../CardModal/CardModal';
 import styles from './Card.module.scss';
 
-const Card = ({ id, name, gender, image, species, episode }: ICard) => (
-  <div id={`${id}`} className={styles.card}>
-    <div className={styles['card__img-wrap']}>
-      <img src={image} alt={name} className={styles.card__img} />
-    </div>
-    <div className={styles.card__description}>
-      <div>
-        <div className={styles.card__title}>{name}</div>
-        <div>
-          <em>gender:</em> {gender}
-        </div>
-        <div>
-          <em>species:</em> {species}
-        </div>
-      </div>
-      <div className={styles.card__episode}>
-        <span className={styles.card__count}>{episode.length}</span>
-        <em>episode count</em>
-      </div>
-    </div>
-  </div>
-);
+const Card = ({ id, name, image }: ICard): JSX.Element => {
+  const [isCardModalShow, setCardModalShow] = useState(false);
 
+  const handleCardModalShow = (): void => setCardModalShow(!isCardModalShow);
+
+  return (
+    <>
+      <div id={`${id}`} className={styles.card} onClick={handleCardModalShow}>
+        <div className={styles['card__img-wrap']}>
+          <img src={image} alt={name} className={styles.card__img} />
+        </div>
+        <div className={styles.card__description}>{name}</div>
+      </div>
+      {isCardModalShow && <CardModal id={id} handleCardModalShow={handleCardModalShow} />}
+    </>
+  );
+};
 export { Card };

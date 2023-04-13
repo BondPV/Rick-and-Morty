@@ -8,7 +8,7 @@ interface IInputRadioProps {
   elements: string[];
 }
 
-const InputRadio = ({ title, name, elements }: IInputRadioProps) => {
+const InputRadio = ({ title, name, elements }: IInputRadioProps): JSX.Element => {
   const {
     register,
     formState: { errors },

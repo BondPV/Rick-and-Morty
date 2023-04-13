@@ -7,8 +7,8 @@ interface IAlertProps {
   setIsShow: (show: boolean) => void;
 }
 
-const Alert = ({ message, isShow, setIsShow }: IAlertProps) => {
-  const handleClose = (e: React.MouseEvent) => {
+const Alert = ({ message, isShow, setIsShow }: IAlertProps): JSX.Element => {
+  const handleClose = (e: React.MouseEvent): void => {
     e.preventDefault();
     setIsShow(false);
   };

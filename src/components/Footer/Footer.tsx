@@ -2,7 +2,7 @@ import { GLOBAL_STYLES } from '../../constants/Constants';
 import styles from './Footer.module.scss';
 import logoRS from './../../assets/rs-school-js.svg';
 
-const Footer = () => (
+const Footer = (): JSX.Element => (
   <footer className={styles.footer}>
     <div className={GLOBAL_STYLES.CONTAINER}>
       <div className={styles.footer__wrapper}>
