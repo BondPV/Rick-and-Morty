@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
-import { getStorage, setStorage, StorageKey } from '../../utils/localStorage';
+import { useDispatch } from 'react-redux';
+import { setSearch } from '../../store/searchSlice';
 import styles from './Search.module.scss';
 
-interface ISearchProps {
-  searchCards: (value: string) => void;
-}
-
-const Search = ({ searchCards }: ISearchProps): JSX.Element => {
-  const [search, setSearch] = useState(() => getStorage(StorageKey.search) || '');
+const Search = (): JSX.Element => {
+  const [searchValue, setSearchValue] = useState('');
+  const dispatch = useDispatch();
 
   const searchInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setSearch(event.target.value);
+    setSearchValue(event.target.value);
   };
 
   const handleSearchSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
-    searchCards(search);
-    setStorage(StorageKey.search, search);
+    dispatch(setSearch(searchValue));
   };
 
   return (
@@ -25,7 +22,7 @@ const Search = ({ searchCards }: ISearchProps): JSX.Element => {
         className={styles.search__input}
         type="search"
         placeholder="search"
-        value={search}
+        value={searchValue}
         onChange={searchInputChange}
       />
       <button className={styles.search__btn}>Search</button>
