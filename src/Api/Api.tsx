@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { ICard, ISearchParams } from '../types/interfaces';
+import { ICard } from '../types/interfaces';
 
 interface IResponseInfo {
   count: number;
@@ -22,46 +22,12 @@ const charactersApi = createApi({
     getCharacters: builder.query<IResponseCharacters, string>({
       query: (name = '') => `?${name && `name=${name}`}`,
     }),
+    getCharacter: builder.query<ICard, number>({
+      query: (id) => `/${id}`,
+    }),
   }),
 });
 
-const { useGetCharactersQuery } = charactersApi;
+const { useGetCharactersQuery, useGetCharacterQuery } = charactersApi;
 
-export { charactersApi, useGetCharactersQuery };
-
-// const getCharacters = async (params: ISearchParams): Promise<ICard[] | null> => {
-//   const queryString = new URLSearchParams(params as unknown as URLSearchParams).toString();
-
-//   try {
-//     const response = await fetch(`${API_URL}?${queryString}`);
-
-//     if (response.status === 404) {
-//       return [];
-//     }
-
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! status: ${response.status}`);
-//     }
-
-//     const data: IResponseCharacters = await response.json();
-//     return data.results;
-//   } catch (error) {
-//     return null;
-//   }
-// };
-
-const getCharacter = async (id: number): Promise<ICard | null> => {
-  try {
-    const response = await fetch(`${API_URL}/${id}`);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return await response.json();
-  } catch (error) {
-    return null;
-  }
-};
-
-export { getCharacter };
+export { charactersApi, useGetCharactersQuery, useGetCharacterQuery };
