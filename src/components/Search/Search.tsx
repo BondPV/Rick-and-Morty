@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import { setSearch } from '../../store/searchSlice';
 import styles from './Search.module.scss';
 
 const Search = (): JSX.Element => {
-  const [searchValue, setSearchValue] = useState('');
   const dispatch = useDispatch();
+  const search = useSelector((state: RootState) => state.search.value);
+  const [searchValue, setSearchValue] = useState(search);
 
   const searchInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchValue(event.target.value);
