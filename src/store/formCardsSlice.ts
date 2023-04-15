@@ -11,12 +11,12 @@ const formCardsSlice = createSlice({
   name: 'cards',
   initialState,
   reducers: {
-    setFormCards: (state, action: PayloadAction<IFormCard[]>) => {
-      state.cards = action.payload;
+    addFormCard: (state, action: PayloadAction<IFormCard>) => {
+      state.cards = [...state.cards, action.payload];
     },
   },
 });
 
-export const { setFormCards } = formCardsSlice.actions;
+export const { addFormCard } = formCardsSlice.actions;
 
 export default formCardsSlice.reducer;
