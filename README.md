@@ -17,6 +17,9 @@
 - [Vite | Next Generation Frontend Tooling](https://vitejs.dev/)
 - [Vitest | Unit test framework](https://vitest.dev/)
 - [React Hook Form | Simple React forms validation](https://react-hook-form.com/)
+- [Redux Toolkit | Tool set for efficient Redux development](https://redux-toolkit.js.org/)
+- [Redux Toolkit | RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
+
 
 - [Prettier | Opinionated Code Formatter](https://prettier.io/)
 - [ESLint | Code analyzer](https://eslint.org/)
