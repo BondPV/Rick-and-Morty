@@ -1,4 +1,5 @@
 import { useGetCharacterQuery } from '../../Api/Api';
+import { dateStringConversion } from '../../utils/dateStringConversion';
 import { Preloader } from '../Preloader/Preloader';
 import styles from './CardModal.module.scss';
 
@@ -23,7 +24,7 @@ const CardModal = ({ id, handleCardModalShow }: ICardModalProps): JSX.Element =>
   }
 
   if (card) {
-    const [createdDate] = card.created?.split('T') || '';
+    const date = dateStringConversion(card.created);
     cardBody = (
       <div className={styles.card__body}>
         <div className={styles['card__img-wrap']}>
@@ -45,7 +46,7 @@ const CardModal = ({ id, handleCardModalShow }: ICardModalProps): JSX.Element =>
               <em>locations:</em> {card.location?.name}
             </div>
             <div>
-              <em>created:</em> {createdDate}
+              <em>created:</em> {date}
             </div>
           </div>
           <div className={styles.card__episode}>
