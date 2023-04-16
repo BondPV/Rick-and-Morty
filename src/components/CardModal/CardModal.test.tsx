@@ -2,8 +2,8 @@ import { screen, render, fireEvent } from '@testing-library/react';
 import { vi, type Mock } from 'vitest';
 import { CardModal } from './CardModal';
 import { ICard } from '../../types/interfaces';
-import database from '../../mocks/source.json';
 import { useGetCharacterQuery } from '../../Api/Api';
+import database from '../../mocks/source.json';
 
 vi.mock('../../Api/Api', () => ({
   useGetCharacterQuery: vi.fn(),
