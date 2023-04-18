@@ -25,7 +25,7 @@ const createServer = async (): Promise<void> => {
       let template: string = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8');
       template = await vite.transformIndexHtml(url, template);
       const html = template.split('<!--ssr-outlet-->');
-      const { render } = await vite.ssrLoadModule('/src/entry-server.ts');
+      const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
       const { pipe }: { pipe: (res: Response) => void } = await render(url, {
         onShellReady(): void {
           res.write(html[0]);
@@ -36,8 +36,6 @@ const createServer = async (): Promise<void> => {
           res.end();
         },
       });
-
-      res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (e: unknown) {
       if (e instanceof Error) {
         vite.ssrFixStacktrace(e);
