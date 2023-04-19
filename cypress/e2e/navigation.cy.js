@@ -1,8 +1,12 @@
 /// <reference types="cypress" />
 
-context('Navigation', () => {
+describe('Navigation', () => {
   beforeEach(() => {
     cy.visit('/');
+  });
+
+  it('should display main page', () => {
+    cy.get('h1').should('have.text', 'Rick and Morty');
   });
 
   it('should navigates to forms page', () => {
