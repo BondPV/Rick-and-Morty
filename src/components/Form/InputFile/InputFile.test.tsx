@@ -30,7 +30,7 @@ describe('InputFile', () => {
     userEvent.upload(input, file);
 
     await waitFor(() => {
-      expect(screen.queryByText('Only JPG and PNG files are allowed')).not.toBeInTheDocument();
+      expect(screen.queryByText('field is required')).not.toBeInTheDocument();
     });
   });
 });

@@ -9,6 +9,10 @@ describe('Main Page', () => {
     cy.title().should('eq', 'Rick and Morty');
   });
 
+  it('should displays main page header', () => {
+    cy.get('h1').should('have.text', 'Rick and Morty');
+  });
+
   it('should displays the navbar', () => {
     cy.get('nav > a:first').should('have.text', 'Main');
     cy.get('nav > a').should('have.length', 3).last().should('have.text', 'About');
@@ -55,5 +59,13 @@ describe('Search', () => {
     cy.get('a[href="/"]').click();
     cy.get('input[type="search"]').should('have.value', 'Morty');
     cy.get('[class*=card__description]').last().should('include.text', 'Morty');
+  });
+
+  it('should display message "Nothing found"', () => {
+    cy.get('input[type="search"]').type('abracadabra');
+    cy.get('button').contains('Search').click();
+    cy.wait(500);
+    cy.get('h3').last().should('have.text', 'Nothing found');
+    cy.get('[class*=cards]').should('not.exist');
   });
 });

@@ -10,13 +10,13 @@ describe('Navigation', () => {
   });
 
   it('should navigates to forms page', () => {
-    cy.get('a[href="/form"]').click();
+    cy.get('nav a[href="/form"]').click();
     cy.location('pathname').should('include', '/form');
     cy.get('h1').should('have.text', 'Form');
   });
 
   it('should navigates to about page', () => {
-    cy.get('a[href="/about"]').click();
+    cy.get('nav a[href="/about"]').click();
     cy.location('pathname').should('include', '/about');
     cy.get('h1').should('have.text', 'About us');
   });
