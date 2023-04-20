@@ -69,3 +69,24 @@ describe('Search', () => {
     cy.get('[class*=cards]').should('not.exist');
   });
 });
+
+describe('Card modal', () => {
+  beforeEach(() => {
+    cy.visit('/');
+    cy.get('input[type="search"]').type('Morty');
+    cy.get('button').contains('Search').click();
+    cy.wait(500);
+    cy.get('[class*=cards] > [class*=card]').first().click();
+  });
+
+  it('should display preloader by clicking on the card', () => {
+    cy.get('[data-testid="preloader"]');
+  });
+
+  it('should display modal window', () => {
+    cy.wait(500);
+    cy.get('[class*=modal]');
+    cy.get('[data-testid="close"]').click();
+    cy.get('[class*=modal]').should('not.exist');
+  });
+});
