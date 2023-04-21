@@ -1,12 +1,11 @@
-import { IFormCard } from '../../types/interfaces';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import { FormCard } from '../FormCard/FormCard';
 import styles from './FormCards.module.scss';
 
-interface IFormCards {
-  cards?: IFormCard[];
-}
+const FormCards = (): JSX.Element => {
+  const cards = useSelector((state: RootState) => state.formCards.cards);
 
-const FormCards = ({ cards }: IFormCards): JSX.Element => {
   if (cards?.length) {
     return (
       <div className={styles.cards}>

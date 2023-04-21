@@ -43,6 +43,7 @@ const InputFile = ({ name, src }: IInputFileProps): JSX.Element => {
           validate: (value) => allowedExtensions.test(value[0].name),
         })}
         onChange={handleImageChange}
+        data-testid="input-file"
       ></input>
       <div className={css(styles.error, styles.error_upload)}>
         {errors[name] && errors[name]?.type === 'required' && ERROR_MESSAGE.REQUIRED}

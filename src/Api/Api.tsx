@@ -1,4 +1,5 @@
-import { ICard, ISearchParams } from '../types/interfaces';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { ICard } from '../types/interfaces';
 
 interface IResponseInfo {
   count: number;
@@ -12,41 +13,21 @@ interface IResponseCharacters {
   results: ICard[];
 }
 
-const API_URL = 'https://rickandmortyapi.com/api/character';
+const API_URL = 'https://rickandmortyapi.com/api/character/';
 
-const getCharacters = async (params: ISearchParams): Promise<ICard[] | null> => {
-  const queryString = new URLSearchParams(params as unknown as URLSearchParams).toString();
+const charactersApi = createApi({
+  reducerPath: 'charactersApi',
+  baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
+  endpoints: (builder) => ({
+    getCharacters: builder.query<IResponseCharacters, string>({
+      query: (name = '') => `?${name && `name=${name}`}`,
+    }),
+    getCharacter: builder.query<ICard, number>({
+      query: (id) => `/${id}`,
+    }),
+  }),
+});
 
-  try {
-    const response = await fetch(`${API_URL}?${queryString}`);
+const { useGetCharactersQuery, useGetCharacterQuery } = charactersApi;
 
-    if (response.status === 404) {
-      return [];
-    }
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data: IResponseCharacters = await response.json();
-    return data.results;
-  } catch (error) {
-    return null;
-  }
-};
-
-const getCharacter = async (id: number): Promise<ICard | null> => {
-  try {
-    const response = await fetch(`${API_URL}/${id}`);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return await response.json();
-  } catch (error) {
-    return null;
-  }
-};
-
-export { getCharacters, getCharacter };
+export { charactersApi, useGetCharactersQuery, useGetCharacterQuery };
