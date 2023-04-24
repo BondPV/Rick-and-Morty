@@ -1,3 +1,9 @@
+@import '../../styles/variables';
+
+.error {
+  color: $color-danger;
+}
+
 .cards {
   display: grid;
   margin: 2rem 0;

@@ -1,23 +1,31 @@
-import { ICard } from '../../types/interfaces';
+import { useSelector } from 'react-redux';
+import { useGetCharactersQuery } from '../../Api/Api';
+import { RootState } from '../../store';
 import { Card } from '../Card/Card';
+import { Preloader } from '../Preloader/Preloader';
 import styles from './Cards.module.scss';
 
-interface ICards {
-  cards?: ICard[];
-}
+const Cards = (): JSX.Element => {
+  const search = useSelector((state: RootState) => state.search.value);
+  const { data, error, isFetching } = useGetCharactersQuery(search);
 
-const Cards = ({ cards }: ICards): JSX.Element => {
-  if (cards?.length) {
-    return (
-      <div className={styles.cards}>
-        {cards?.map((card) => (
-          <Card key={card.id} {...card} />
-        ))}
-      </div>
-    );
+  if (isFetching) {
+    return <Preloader />;
   }
 
-  return <h3>Nothing found</h3>;
+  if (error && 'status' in error && error.status === 404) {
+    return <h3>Nothing found</h3>;
+  } else if (error) {
+    return <h3 className={styles.error}>Something went wrong. Please try again later</h3>;
+  }
+
+  return (
+    <div className={styles.cards}>
+      {data?.results?.map((card) => (
+        <Card key={card.id} {...card} />
+      ))}
+    </div>
+  );
 };
 
 export { Cards };

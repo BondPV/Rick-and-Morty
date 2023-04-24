@@ -1,17 +1,15 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { IFormCard } from '../../types/interfaces';
 import { LOCATIONS, GENDER, DEFAULT_IMG, REGEX_NAME } from '../../constants/Constants';
 import { InputValue } from './InputValue/InputValue';
 import { InputSelect } from './InputSelect/InputSelect';
 import { InputRadio } from './InputRadio/InputRadio';
 import { InputFile } from './InputFile/InputFile';
+import { addFormCard } from '../../store/formCardsSlice';
+import { Alert } from '../Alert/Alert';
 import styles from './Form.module.scss';
-
-interface IFormProps {
-  addCard: (card: IFormCard) => void;
-  handleAlert: (show: boolean) => void;
-}
 
 interface IFormInputs {
   title: string;
@@ -23,12 +21,18 @@ interface IFormInputs {
   image: FileList;
 }
 
-const Form = ({ addCard, handleAlert }: IFormProps): JSX.Element => {
+const alertMessage = 'Card created successfully';
+
+const Form = (): JSX.Element => {
+  const dispatch = useDispatch();
   const [imagePreview, setImagePreview] = useState(DEFAULT_IMG.SRC);
   const methods = useForm<IFormInputs>({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
   });
+
+  const [showAlert, setShowAlert] = useState(false);
+  const handleAlert = (show: boolean): void => setShowAlert(show);
 
   const onSubmit = (data: IFormInputs): void => {
     const status = data.status ? 'alive' : 'dead';
@@ -40,10 +44,10 @@ const Form = ({ addCard, handleAlert }: IFormProps): JSX.Element => {
       status: status,
     };
 
-    addCard(newCard);
+    dispatch(addFormCard(newCard));
     methods.reset();
     setImagePreview(DEFAULT_IMG.SRC);
-    handleAlert(true);
+    setShowAlert(true);
   };
 
   return (
@@ -73,6 +77,7 @@ const Form = ({ addCard, handleAlert }: IFormProps): JSX.Element => {
           Create
         </button>
       </FormProvider>
+      {showAlert && <Alert message={alertMessage} isShow={showAlert} setIsShow={handleAlert} />}
     </div>
   );
 };
