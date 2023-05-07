@@ -6,7 +6,8 @@ import { App } from './App';
 import store from './store';
 import './index.scss';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.hydrateRoot(
+  document.getElementById('app') as HTMLElement,
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>

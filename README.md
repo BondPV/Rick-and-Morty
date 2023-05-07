@@ -2,13 +2,14 @@
 - Project for the [Rolling Scopes School](https://rs.school) React course.
 
 
-### 🔗 Deploy  
+### 🔗 Deploy (without SSR)
 - https://bondpv-rss-react.netlify.app/
 
 ### 🛠️ Run project
 - "npm install": for install required packages
 - "npm run dev": for start project in developer mode
-- "npm run build": for prepare application build
+- "npm run vi:coverage": for unit tests coverage
+- "npm run cy:report": for e2e tests coverage
 
 ### ⚙️ Tech Stack
 
@@ -19,6 +20,8 @@
 - [React Hook Form | Simple React forms validation](https://react-hook-form.com/)
 - [Redux Toolkit | Tool set for efficient Redux development](https://redux-toolkit.js.org/)
 - [Redux Toolkit | RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
+- Server-Side Rendering: [vite ssr](https://vitejs.dev/guide/ssr.html), [react-router ssr](https://reactrouter.com/en/main/guides/ssr), [redux ssr](https://redux.js.org/usage/server-rendering)
+- [Cypress | Fast, easy and reliable testing](https://www.cypress.io/)
 
 
 - [Prettier | Opinionated Code Formatter](https://prettier.io/)

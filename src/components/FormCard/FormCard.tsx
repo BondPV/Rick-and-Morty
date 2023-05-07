@@ -10,7 +10,7 @@ const FormCard = ({
   image,
   created,
 }: IFormCard): JSX.Element => (
-  <div id={`${id}`} className={styles.card}>
+  <div id={id.toString()} className={styles.card} data-testid={name}>
     <div className={styles['card__img-wrap']}>
       <img src={image} alt={name} className={styles.card__img} />
     </div>

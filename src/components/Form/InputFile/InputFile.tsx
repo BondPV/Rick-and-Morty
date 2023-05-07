@@ -8,9 +8,6 @@ interface IInputFileProps {
   src: (imgUrl: string) => void;
 }
 
-const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
-const fileTypeErrorMessage = 'Only JPG and PNG files are allowed';
-
 const InputFile = ({ name, src }: IInputFileProps): JSX.Element => {
   const {
     register,
@@ -40,14 +37,12 @@ const InputFile = ({ name, src }: IInputFileProps): JSX.Element => {
         id={name}
         {...register(name, {
           required: ERROR_MESSAGE.REQUIRED,
-          validate: (value) => allowedExtensions.test(value[0].name),
         })}
         onChange={handleImageChange}
         data-testid="input-file"
       ></input>
       <div className={css(styles.error, styles.error_upload)}>
         {errors[name] && errors[name]?.type === 'required' && ERROR_MESSAGE.REQUIRED}
-        {errors[name] && errors[name]?.type === 'validate' && fileTypeErrorMessage}
       </div>
     </>
   );
